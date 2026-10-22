@@ -1,0 +1,237 @@
+{
+  "stage": "STAGE_6H_SAMPLING_COUNTERFACTUAL",
+  "timestamp": "2026-09-08T13:07:00Z",
+  "auditor": "Antigravity Agentic AI",
+  "objective": "Test whether temporal sampling strategy is responsible for LipForensics false positive on videoplayback.mp4",
+  "primary_video": {
+    "path": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+    "filename": "videoplayback.mp4",
+    "ground_truth": "REAL",
+    "ground_truth_status": "User-Verified Real In-The-Wild Video",
+    "total_frames": 5019,
+    "fps": 30.0,
+    "duration_seconds": 167.3,
+    "resolution": "640x352",
+    "valid_mouth_crops": 5019,
+    "face_detection_success_rate": 1.0,
+    "mouth_crop_success_rate": 1.0
+  },
+  "strategy_a_production_sequential": {
+    "strategy_name": "Current Production Sequential Sampling (Early 4 clips)",
+    "description": "4 consecutive 25-frame clips from the beginning of the video (crops 0..99)",
+    "clips": [
+      {
+        "clip_index": 1,
+        "start_crop_idx": 0,
+        "end_crop_idx": 25,
+        "start_frame": 0,
+        "end_frame": 24,
+        "start_timestamp_sec": 0.0,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 2.4776,
+        "fake_probability": 0.9226
+      },
+      {
+        "clip_index": 2,
+        "start_crop_idx": 25,
+        "end_crop_idx": 50,
+        "start_frame": 25,
+        "end_frame": 49,
+        "start_timestamp_sec": 0.833,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": -0.1747,
+        "fake_probability": 0.4564
+      },
+      {
+        "clip_index": 3,
+        "start_crop_idx": 50,
+        "end_crop_idx": 75,
+        "start_frame": 50,
+        "end_frame": 74,
+        "start_timestamp_sec": 1.667,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 5.6947,
+        "fake_probability": 0.9966
+      },
+      {
+        "clip_index": 4,
+        "start_crop_idx": 75,
+        "end_crop_idx": 100,
+        "start_frame": 75,
+        "end_frame": 99,
+        "start_timestamp_sec": 2.5,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 10.9624,
+        "fake_probability": 1.0
+      }
+    ],
+    "clip_logits": [
+      2.4776,
+      -0.1747,
+      5.6947,
+      10.9624
+    ],
+    "clip_probabilities": [
+      0.9226,
+      0.4564,
+      0.9966,
+      1.0
+    ],
+    "mean_logit": 4.74,
+    "final_fake_probability": 0.9913,
+    "decision_threshold": 0.5,
+    "verdict": "FAKE",
+    "correct": false
+  },
+  "strategy_b_distributed_sampling": {
+    "strategy_name": "Distributed Sampling (5%, 30%, 55%, 80%)",
+    "description": "4 distinct 25-frame clips centered at 5%, 30%, 55%, and 80% of video duration",
+    "clips": [
+      {
+        "clip_index": 1,
+        "target_pct": "5%",
+        "target_center_crop_idx": 251,
+        "start_crop_idx": 239,
+        "end_crop_idx": 264,
+        "start_frame": 239,
+        "end_frame": 263,
+        "start_timestamp_sec": 7.967,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 7.5275,
+        "fake_probability": 0.9995
+      },
+      {
+        "clip_index": 2,
+        "target_pct": "30%",
+        "target_center_crop_idx": 1505,
+        "start_crop_idx": 1493,
+        "end_crop_idx": 1518,
+        "start_frame": 1493,
+        "end_frame": 1517,
+        "start_timestamp_sec": 49.767,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 10.4901,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 3,
+        "target_pct": "55%",
+        "target_center_crop_idx": 2760,
+        "start_crop_idx": 2748,
+        "end_crop_idx": 2773,
+        "start_frame": 2748,
+        "end_frame": 2772,
+        "start_timestamp_sec": 91.6,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 1.0278,
+        "fake_probability": 0.7365
+      },
+      {
+        "clip_index": 4,
+        "target_pct": "80%",
+        "target_center_crop_idx": 4014,
+        "start_crop_idx": 4002,
+        "end_crop_idx": 4027,
+        "start_frame": 4002,
+        "end_frame": 4026,
+        "start_timestamp_sec": 133.4,
+        "valid_mouth_crop_count": 25,
+        "raw_logit": 4.7367,
+        "fake_probability": 0.9913
+      }
+    ],
+    "clip_logits": [
+      7.5275,
+      10.4901,
+      1.0278,
+      4.7367
+    ],
+    "clip_probabilities": [
+      0.9995,
+      1.0,
+      0.7365,
+      0.9913
+    ],
+    "mean_logit": 5.9455,
+    "final_fake_probability": 0.9974,
+    "decision_threshold": 0.5,
+    "verdict": "FAKE",
+    "correct": false
+  },
+  "counterfactual_comparison": {
+    "absolute_probability_difference": 0.0061,
+    "verdict_changed": false,
+    "verdict_transition": "FAKE -> FAKE",
+    "outlier_analysis": "In Strategy A (sequential early clips), Clip 4 is an extreme high-logit outlier (+10.9624, prob 1.0000) while Clip 2 is negative (-0.1747, prob 0.4564), yielding standard deviation sigma = 4.150. In Strategy B (distributed clips across 5%, 30%, 55%, 80%), logits are: Clip 1 (5%): +7.5275 (p=0.9995), Clip 2 (30%): +10.4901 (p=1.0000), Clip 3 (55%): +1.0278 (p=0.7365), Clip 4 (80%): +4.7367 (p=0.9913), with sigma = 3.493.",
+    "std_logits_strategy_a": 4.1504,
+    "std_logits_strategy_b": 3.4929
+  },
+  "part_b_prepared_manifest": {
+    "description": "Paired 10-video benchmark (5 genuinely new REAL + 5 genuinely new FAKE) for paired sequential vs. distributed sampling comparison",
+    "real_videos": [
+      {
+        "id": "new_real_01",
+        "filename": "01__outside_talking_pan_laughing.mp4",
+        "path": "D:\\benchmark_dataset\\real\\01__outside_talking_pan_laughing.mp4",
+        "ground_truth": "REAL"
+      },
+      {
+        "id": "new_real_02",
+        "filename": "01__outside_talking_still_laughing.mp4",
+        "path": "D:\\benchmark_dataset\\real\\01__outside_talking_still_laughing.mp4",
+        "ground_truth": "REAL"
+      },
+      {
+        "id": "new_real_03",
+        "filename": "01__podium_speech_happy.mp4",
+        "path": "D:\\benchmark_dataset\\real\\01__podium_speech_happy.mp4",
+        "ground_truth": "REAL"
+      },
+      {
+        "id": "new_real_04",
+        "filename": "01__secret_conversation.mp4",
+        "path": "D:\\benchmark_dataset\\real\\01__secret_conversation.mp4",
+        "ground_truth": "REAL"
+      },
+      {
+        "id": "new_real_05",
+        "filename": "01__talking_against_wall.mp4",
+        "path": "D:\\benchmark_dataset\\real\\01__talking_against_wall.mp4",
+        "ground_truth": "REAL"
+      }
+    ],
+    "fake_videos": [
+      {
+        "id": "new_fake_01",
+        "filename": "01_11__meeting_serious__9OM3VE0Y.mp4",
+        "path": "D:\\benchmark_dataset\\fake\\01_11__meeting_serious__9OM3VE0Y.mp4",
+        "ground_truth": "FAKE"
+      },
+      {
+        "id": "new_fake_02",
+        "filename": "01_11__secret_conversation__4OJNJLOO.mp4",
+        "path": "D:\\benchmark_dataset\\fake\\01_11__secret_conversation__4OJNJLOO.mp4",
+        "ground_truth": "FAKE"
+      },
+      {
+        "id": "new_fake_03",
+        "filename": "01_11__talking_against_wall__9229VVZ3.mp4",
+        "path": "D:\\benchmark_dataset\\fake\\01_11__talking_against_wall__9229VVZ3.mp4",
+        "ground_truth": "FAKE"
+      },
+      {
+        "id": "new_fake_04",
+        "filename": "01_11__walking_outside_cafe_disgusted__FAFWDR4W.mp4",
+        "path": "D:\\benchmark_dataset\\fake\\01_11__walking_outside_cafe_disgusted__FAFWDR4W.mp4",
+        "ground_truth": "FAKE"
+      },
+      {
+        "id": "new_fake_05",
+        "filename": "01_12__outside_talking_pan_laughing__TNI7KUZ6.mp4",
+        "path": "D:\\benchmark_dataset\\fake\\01_12__outside_talking_pan_laughing__TNI7KUZ6.mp4",
+        "ground_truth": "FAKE"
+      }
+    ]
+  },
+  "runtime_seconds": 50.3
+}

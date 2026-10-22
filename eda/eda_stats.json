@@ -1,0 +1,86 @@
+{
+  "dataset_shape": {
+    "total_rows": 44898,
+    "total_columns": 12,
+    "columns": [
+      "title",
+      "text",
+      "subject",
+      "date",
+      "label",
+      "full_text",
+      "word_count",
+      "char_count",
+      "title_length",
+      "label_numeric",
+      "uppercase_word_ratio",
+      "punctuation_density"
+    ]
+  },
+  "class_distribution": {
+    "fake_count": 23481,
+    "real_count": 21417,
+    "fake_percentage": 52.3,
+    "real_percentage": 47.7
+  },
+  "missing_values": {
+    "title": 0,
+    "text": 0,
+    "subject": 0,
+    "date": 0,
+    "label": 0,
+    "full_text": 0,
+    "word_count": 0,
+    "char_count": 0,
+    "title_length": 0,
+    "label_numeric": 0,
+    "uppercase_word_ratio": 0,
+    "punctuation_density": 0
+  },
+  "duplicate_rows": 209,
+  "duplicate_articles": 5793,
+  "word_count_statistics": {
+    "overall": {
+      "mean": 417.74,
+      "median": 375.0,
+      "std": 351.48,
+      "min": 2,
+      "max": 8148,
+      "p25": 216.0,
+      "p75": 526.0,
+      "p95": 916.0
+    },
+    "fake_class": {
+      "mean": 437.93,
+      "median": 378.0,
+      "std": 408.56,
+      "min": 2,
+      "max": 8148
+    },
+    "real_class": {
+      "mean": 395.59,
+      "median": 369.0,
+      "std": 273.95,
+      "min": 4,
+      "max": 5181
+    }
+  },
+  "subject_distribution": {
+    "politicsNews": 11272,
+    "worldnews": 10145,
+    "News": 9050,
+    "politics": 6841,
+    "left-news": 4459,
+    "Government News": 1570,
+    "US_News": 783,
+    "Middle-east": 778
+  },
+  "correlation_matrix_with_target": {
+    "word_count": 0.0602,
+    "char_count": 0.0445,
+    "title_length": 0.5805,
+    "uppercase_word_ratio": 0.1891,
+    "punctuation_density": 0.1091,
+    "label_numeric": 1.0
+  }
+}

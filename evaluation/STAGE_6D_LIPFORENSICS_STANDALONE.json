@@ -1,0 +1,130 @@
+{
+  "stage_metadata": {
+    "stage": "STAGE_6D",
+    "stage_title": "Isolated LipForensics Pretrained Inference",
+    "date": "2026-09-07",
+    "auditor": "Antigravity Agentic AI",
+    "framework": "SIGNAL Video Deepfake Detection",
+    "execution_type": "STANDALONE_ISOLATED_INFERENCE"
+  },
+  "checkpoint_provenance": {
+    "official_repository": "https://github.com/ahaliassos/LipForensics",
+    "source_url": "https://drive.google.com/uc?export=download&id=1wfZnxZpyNd5ouJs0LjVls7zU0N_W73L7",
+    "filename": "lipforensics_ff.pth",
+    "file_size_bytes": 144124225,
+    "file_size_mb": 137.45,
+    "sha256": "4b7790bc8e02d0c25ecfa0d8d6a2907123c2206cc32e2bad6044e50f013c253d",
+    "checkpoint_object_type": "dict",
+    "top_level_keys": [
+      "model",
+      "epoch"
+    ],
+    "epoch_trained": 15,
+    "total_state_dict_keys": 343,
+    "representative_keys": [
+      "trunk.layer1.0.conv1.weight",
+      "trunk.layer1.0.bn1.weight",
+      "frontend3D.0.weight",
+      "tcn.mb_ms_tcn.network.0.cbcr0_0.conv.weight",
+      "tcn.tcn_output.weight",
+      "tcn.tcn_output.bias"
+    ],
+    "architecture_match": "VERIFIED_EXACT_MATCH"
+  },
+  "isolated_environment": {
+    "python_version": "3.14.4",
+    "pytorch_version": "2.11.0+cpu",
+    "torchvision_version": "0.26.0+cpu",
+    "cuda_available": false,
+    "compute_device": "CPU",
+    "opencv_version": "4.13.0",
+    "numpy_version": "2.4.4"
+  },
+  "model_architecture": {
+    "model_class": "Lipreading",
+    "frontend_3d": "nn.Conv3d(1, 64, kernel_size=(5, 7, 7), stride=(1, 2, 2), padding=(2, 3, 3), bias=False) + BatchNorm3d + PReLU + MaxPool3d",
+    "spatial_trunk": "ResNet-18 (BasicBlock with PReLU activations, 4 layers: [2, 2, 2, 2])",
+    "temporal_backend": "MultiscaleMultibranchTCN (MS-TCN with 4 layers, kernel sizes [3, 5, 7], width_mult=1, PReLU)",
+    "classifier_head": "nn.Linear(768, 1)",
+    "temporal_consensus": "Mean temporal pooling across sequence length (_average_batch)"
+  },
+  "exact_preprocessing": {
+    "detection_method": "OpenCV YuNet (FaceDetectorYN) 5-point landmark extraction",
+    "mouth_localization": "Mouth center computed from right mouth corner (rm) and left mouth corner (lm)",
+    "crop_size": [88, 88],
+    "color_space": "Grayscale (1 channel)",
+    "sequence_length": 25,
+    "normalization": {
+      "scale": "1/255.0",
+      "mean": [0.421],
+      "std": [0.165]
+    },
+    "input_tensor_format": "B x C x T x H x W = (1, 1, 25, 88, 88)"
+  },
+  "class_semantics": {
+    "output_dimension": 1,
+    "class_ordering": "Index 0 / Positive Logit: FAKE (1.0), Negative Logit: REAL (0.0)",
+    "probability_mapping": "sigmoid(logit) = 1.0 / (1.0 + exp(-logit))"
+  },
+  "sanity_test_results": {
+    "real_diagnostic_video": {
+      "video_id": "real_001",
+      "filename": "01__exit_phone_room.mp4",
+      "local_path": "D:\\benchmark_dataset\\real\\01__exit_phone_room.mp4",
+      "ground_truth": "REAL",
+      "ground_truth_label": 0,
+      "frames_read": 305,
+      "valid_face_frames": 305,
+      "valid_mouth_crops": 305,
+      "clips_analyzed": 4,
+      "sequence_length": 25,
+      "model_input_tensor_shape": [1, 1, 25, 88, 88],
+      "model_output_tensor_shape": [1, 1],
+      "raw_clip_logits": [0.6763, -0.5108, -0.5673, 4.2763],
+      "mean_logit": 0.9686,
+      "fake_score": 0.7248,
+      "inference_time_sec": 34.8829,
+      "status": "ANALYZED"
+    },
+    "fake_diagnostic_video": {
+      "video_id": "fake_001",
+      "filename": "01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "local_path": "D:\\benchmark_dataset\\fake\\01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "ground_truth": "FAKE",
+      "ground_truth_label": 1,
+      "frames_read": 727,
+      "valid_face_frames": 727,
+      "valid_mouth_crops": 727,
+      "clips_analyzed": 4,
+      "sequence_length": 25,
+      "model_input_tensor_shape": [1, 1, 25, 88, 88],
+      "model_output_tensor_shape": [1, 1],
+      "raw_clip_logits": [-12.02, -2.3882, -4.4294, -0.2538],
+      "mean_logit": -4.7729,
+      "fake_score": 0.0084,
+      "inference_time_sec": 85.9758,
+      "status": "ANALYZED"
+    }
+  },
+  "edge_case_handling": {
+    "handled_statuses": [
+      "NO_FACE_DETECTED",
+      "INSUFFICIENT_MOUTH_EVIDENCE",
+      "ANALYZED",
+      "ERROR"
+    ],
+    "no_face_test": "Verified (returns NO_FACE_DETECTED with null score)",
+    "file_not_found_test": "Verified (returns ERROR with descriptive message)"
+  },
+  "known_limitations": [
+    "LipForensics evaluates mouth/speech dynamics only; deepfakes with motionless or non-talking faces provide reduced forensic signal",
+    "Requires high face resolution to extract clean 88x88 mouth crops without heavy interpolation artifacts",
+    "Pretrained on FaceForensics++ c23 (near-domain relative to DFD benchmark)"
+  ],
+  "production_isolation_status": {
+    "connected_to_production": false,
+    "production_files_modified": false,
+    "baseline_untouched": true,
+    "gend_untouched": true
+  }
+}

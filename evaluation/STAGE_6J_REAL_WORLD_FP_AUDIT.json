@@ -1,0 +1,2174 @@
+{
+  "stage": "STAGE_6J_REAL_WORLD_FALSE_POSITIVE_AUDIT",
+  "timestamp": "2026-09-08T14:34:57Z",
+  "auditor": "Antigravity Agentic AI",
+  "objective": "Determine whether LipForensics false-positive on videoplayback.mp4 is an isolated outlier or part of a systematic real-world domain gap",
+  "sample_size": 25,
+  "summary_statistics": {
+    "total_real_videos_audited": 25,
+    "classified_real": 14,
+    "classified_fake": 11,
+    "false_positive_rate": 0.44,
+    "false_positive_rate_pct": "44.0%",
+    "specificity": 0.56,
+    "specificity_pct": "56.0%",
+    "mean_score": 0.5189,
+    "median_score": 0.3912,
+    "std_score": 0.3206,
+    "q25": 0.2894,
+    "q75": 0.8262,
+    "iqr": 0.5368,
+    "min_score": 0.0025,
+    "max_score": 1.0
+  },
+  "descriptive_threshold_counts": {
+    "score_gte_0_50": {
+      "count": 11,
+      "percentage": "44.0%"
+    },
+    "score_gte_0_76": {
+      "count": 8,
+      "percentage": "32.0%"
+    },
+    "score_gte_0_88": {
+      "count": 5,
+      "percentage": "20.0%"
+    },
+    "score_gte_0_90": {
+      "count": 5,
+      "percentage": "20.0%"
+    },
+    "score_gte_0_94": {
+      "count": 4,
+      "percentage": "16.0%"
+    },
+    "score_gte_0_99": {
+      "count": 4,
+      "percentage": "16.0%"
+    }
+  },
+  "benchmark_comparison_stage_6e": {
+    "count": 50,
+    "false_positives_at_0_50": 20,
+    "fpr_at_0_50": 0.4,
+    "mean": 0.4051,
+    "median": 0.2526,
+    "std": 0.3889,
+    "q25": 0.0171,
+    "q75": 0.8528,
+    "iqr": 0.8357,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "primary_case_videoplayback": {
+    "id": "rw_01_primary",
+    "filename": "videoplayback.mp4",
+    "path": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+    "ground_truth": "REAL",
+    "provenance": "User-Verified Real In-The-Wild Web Video (YouTube / Web stream)",
+    "device_or_source": "Web Video Stream (Guitar Performance)",
+    "capture_setting": "Indoor ambient, continuous talking/singing, direct frontal to slight angle",
+    "video_properties": {
+      "resolution": "640x352",
+      "width": 640,
+      "height": 352,
+      "fps": 30.0,
+      "total_frames": 5019,
+      "duration_seconds": 167.3,
+      "valid_face_frames": 5019,
+      "valid_mouth_crops": 5019,
+      "face_detect_rate": 1.0,
+      "mouth_crop_rate": 1.0
+    },
+    "inference_output": {
+      "clip_count": 4,
+      "clips": [
+        {
+          "clip_index": 1,
+          "start_frame": 0,
+          "end_frame": 24,
+          "start_timestamp_sec": 0.0,
+          "valid_mouth_crops": 25,
+          "raw_logit": 2.4776,
+          "fake_probability": 0.9226
+        },
+        {
+          "clip_index": 2,
+          "start_frame": 25,
+          "end_frame": 49,
+          "start_timestamp_sec": 0.833,
+          "valid_mouth_crops": 25,
+          "raw_logit": -0.1747,
+          "fake_probability": 0.4564
+        },
+        {
+          "clip_index": 3,
+          "start_frame": 50,
+          "end_frame": 74,
+          "start_timestamp_sec": 1.667,
+          "valid_mouth_crops": 25,
+          "raw_logit": 5.6947,
+          "fake_probability": 0.9966
+        },
+        {
+          "clip_index": 4,
+          "start_frame": 75,
+          "end_frame": 99,
+          "start_timestamp_sec": 2.5,
+          "valid_mouth_crops": 25,
+          "raw_logit": 10.9624,
+          "fake_probability": 1.0
+        }
+      ],
+      "per_clip_raw_logits": [
+        2.4776,
+        -0.1747,
+        5.6947,
+        10.9624
+      ],
+      "per_clip_fake_probabilities": [
+        0.9226,
+        0.4564,
+        0.9966,
+        1.0
+      ],
+      "mean_logit": 4.74,
+      "final_fake_probability": 0.9913,
+      "decision_threshold": 0.5,
+      "verdict": "FAKE",
+      "is_false_positive": true,
+      "logit_std_dev": 4.1504,
+      "prob_std_dev": 0.2259
+    },
+    "inference_time_sec": 45.339
+  },
+  "outlier_analysis": {
+    "top_5_highest_scoring_real": [
+      {
+        "filename": "download (5).mp4",
+        "provenance": "Direct Web Video Download",
+        "score": 1.0,
+        "mean_logit": 11.9771,
+        "resolution": "136x184"
+      },
+      {
+        "filename": "Snapchat-550444171.mp4",
+        "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+        "score": 1.0,
+        "mean_logit": 12.8026,
+        "resolution": "528x864"
+      },
+      {
+        "filename": "download (2).mp4",
+        "provenance": "Direct Web Video Download",
+        "score": 0.9985,
+        "mean_logit": 6.4849,
+        "resolution": "124x152"
+      },
+      {
+        "filename": "videoplayback.mp4",
+        "provenance": "User-Verified Real In-The-Wild Web Video (YouTube / Web stream)",
+        "score": 0.9913,
+        "mean_logit": 4.74,
+        "resolution": "640x352"
+      },
+      {
+        "filename": "download (3).mp4",
+        "provenance": "Direct Web Video Download",
+        "score": 0.9015,
+        "mean_logit": 2.2142,
+        "resolution": "124x152"
+      }
+    ],
+    "top_5_lowest_scoring_real": [
+      {
+        "filename": "download.mp4",
+        "provenance": "Direct Web Video Download",
+        "score": 0.0025,
+        "mean_logit": -5.9706,
+        "resolution": "124x152"
+      },
+      {
+        "filename": "download (1).mp4",
+        "provenance": "Direct Web Video Download",
+        "score": 0.0234,
+        "mean_logit": -3.7312,
+        "resolution": "124x152"
+      },
+      {
+        "filename": "Snapchat-1698098903.mp4",
+        "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+        "score": 0.1137,
+        "mean_logit": -2.0534,
+        "resolution": "720x1280"
+      },
+      {
+        "filename": "Snapchat-1025239733.mp4",
+        "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+        "score": 0.1677,
+        "mean_logit": -1.602,
+        "resolution": "720x1280"
+      },
+      {
+        "filename": "Snapchat-27218158.mp4",
+        "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+        "score": 0.2485,
+        "mean_logit": -1.1064,
+        "resolution": "720x1280"
+      }
+    ],
+    "top_5_highest_variance_clips": [
+      {
+        "filename": "Snapchat-550444171.mp4",
+        "logit_std_dev": 10.4949,
+        "per_clip_logits": [
+          0.4061,
+          29.417,
+          11.685,
+          9.7021
+        ]
+      },
+      {
+        "filename": "download (2).mp4",
+        "logit_std_dev": 9.2463,
+        "per_clip_logits": [
+          -7.0384,
+          3.5583,
+          17.4698,
+          11.9498
+        ]
+      },
+      {
+        "filename": "download.mp4",
+        "logit_std_dev": 6.5355,
+        "per_clip_logits": [
+          -17.1637,
+          -2.5374,
+          -3.4452,
+          -0.7361
+        ]
+      },
+      {
+        "filename": "VID-20230224-WA0058.mp4",
+        "logit_std_dev": 4.8894,
+        "per_clip_logits": [
+          7.8152,
+          -2.5907,
+          -2.5226
+        ]
+      },
+      {
+        "filename": "videoplayback.mp4",
+        "logit_std_dev": 4.1504,
+        "per_clip_logits": [
+          2.4776,
+          -0.1747,
+          5.6947,
+          10.9624
+        ]
+      }
+    ]
+  },
+  "diagnostic_conclusion": {
+    "primary_verdict": "B) Probable Systematic Real-World False-Positive / Domain-Gap Problem",
+    "justification": "Across 25 diverse real-world authentic non-benchmark videos, LipForensics produced a 44.0% False Positive Rate at threshold 0.50 (median score 0.3912, mean 0.5189). 5/25 (20.0%) of genuinely authentic videos scored >= 0.90 fake probability, confirming that the primary failure on videoplayback.mp4 (p=0.9913) is NOT an isolated glitch, but represents a systematic architectural domain gap between FaceForensics++ c23 studio training footage and real-world in-the-wild web/mobile video."
+  },
+  "per_video_results": [
+    {
+      "id": "rw_01_primary",
+      "filename": "videoplayback.mp4",
+      "path": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+      "ground_truth": "REAL",
+      "provenance": "User-Verified Real In-The-Wild Web Video (YouTube / Web stream)",
+      "device_or_source": "Web Video Stream (Guitar Performance)",
+      "capture_setting": "Indoor ambient, continuous talking/singing, direct frontal to slight angle",
+      "video_properties": {
+        "resolution": "640x352",
+        "width": 640,
+        "height": 352,
+        "fps": 30.0,
+        "total_frames": 5019,
+        "duration_seconds": 167.3,
+        "valid_face_frames": 5019,
+        "valid_mouth_crops": 5019,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 2.4776,
+            "fake_probability": 0.9226
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.1747,
+            "fake_probability": 0.4564
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": 5.6947,
+            "fake_probability": 0.9966
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": 10.9624,
+            "fake_probability": 1.0
+          }
+        ],
+        "per_clip_raw_logits": [
+          2.4776,
+          -0.1747,
+          5.6947,
+          10.9624
+        ],
+        "per_clip_fake_probabilities": [
+          0.9226,
+          0.4564,
+          0.9966,
+          1.0
+        ],
+        "mean_logit": 4.74,
+        "final_fake_probability": 0.9913,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 4.1504,
+        "prob_std_dev": 0.2259
+      },
+      "inference_time_sec": 45.339
+    },
+    {
+      "id": "rw_02_web_dl",
+      "filename": "download.mp4",
+      "path": "C:\\Users\\hp\\Downloads\\download.mp4",
+      "ground_truth": "REAL",
+      "provenance": "Direct Web Video Download",
+      "device_or_source": "Web Video Clip",
+      "capture_setting": "Low-resolution web video, conversational expression",
+      "video_properties": {
+        "resolution": "124x152",
+        "width": 124,
+        "height": 152,
+        "fps": 30.0,
+        "total_frames": 297,
+        "duration_seconds": 9.9,
+        "valid_face_frames": 297,
+        "valid_mouth_crops": 297,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -17.1637,
+            "fake_probability": 0.0
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": -2.5374,
+            "fake_probability": 0.0733
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": -3.4452,
+            "fake_probability": 0.0309
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.7361,
+            "fake_probability": 0.3239
+          }
+        ],
+        "per_clip_raw_logits": [
+          -17.1637,
+          -2.5374,
+          -3.4452,
+          -0.7361
+        ],
+        "per_clip_fake_probabilities": [
+          0.0,
+          0.0733,
+          0.0309,
+          0.3239
+        ],
+        "mean_logit": -5.9706,
+        "final_fake_probability": 0.0025,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 6.5355,
+        "prob_std_dev": 0.1279
+      },
+      "inference_time_sec": 1.026
+    },
+    {
+      "id": "rw_03_web_dl1",
+      "filename": "download (1).mp4",
+      "path": "C:\\Users\\hp\\Downloads\\download (1).mp4",
+      "ground_truth": "REAL",
+      "provenance": "Direct Web Video Download",
+      "device_or_source": "Web Video Clip",
+      "capture_setting": "Low-resolution web video, frontal portrait",
+      "video_properties": {
+        "resolution": "124x152",
+        "width": 124,
+        "height": 152,
+        "fps": 30.0,
+        "total_frames": 297,
+        "duration_seconds": 9.9,
+        "valid_face_frames": 297,
+        "valid_mouth_crops": 297,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -2.8439,
+            "fake_probability": 0.055
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": -7.6646,
+            "fake_probability": 0.0005
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": -3.6342,
+            "fake_probability": 0.0257
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.7823,
+            "fake_probability": 0.3138
+          }
+        ],
+        "per_clip_raw_logits": [
+          -2.8439,
+          -7.6646,
+          -3.6342,
+          -0.7823
+        ],
+        "per_clip_fake_probabilities": [
+          0.055,
+          0.0005,
+          0.0257,
+          0.3138
+        ],
+        "mean_logit": -3.7312,
+        "final_fake_probability": 0.0234,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 2.4982,
+        "prob_std_dev": 0.1256
+      },
+      "inference_time_sec": 1.06
+    },
+    {
+      "id": "rw_04_web_dl2",
+      "filename": "download (2).mp4",
+      "path": "C:\\Users\\hp\\Downloads\\download (2).mp4",
+      "ground_truth": "REAL",
+      "provenance": "Direct Web Video Download",
+      "device_or_source": "Web Video Clip",
+      "capture_setting": "Low-resolution web video, frontal portrait",
+      "video_properties": {
+        "resolution": "124x152",
+        "width": 124,
+        "height": 152,
+        "fps": 30.0,
+        "total_frames": 297,
+        "duration_seconds": 9.9,
+        "valid_face_frames": 297,
+        "valid_mouth_crops": 297,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -7.0384,
+            "fake_probability": 0.0009
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": 3.5583,
+            "fake_probability": 0.9723
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": 17.4698,
+            "fake_probability": 1.0
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": 11.9498,
+            "fake_probability": 1.0
+          }
+        ],
+        "per_clip_raw_logits": [
+          -7.0384,
+          3.5583,
+          17.4698,
+          11.9498
+        ],
+        "per_clip_fake_probabilities": [
+          0.0009,
+          0.9723,
+          1.0,
+          1.0
+        ],
+        "mean_logit": 6.4849,
+        "final_fake_probability": 0.9985,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 9.2463,
+        "prob_std_dev": 0.4288
+      },
+      "inference_time_sec": 1.05
+    },
+    {
+      "id": "rw_05_web_dl3",
+      "filename": "download (3).mp4",
+      "path": "C:\\Users\\hp\\Downloads\\download (3).mp4",
+      "ground_truth": "REAL",
+      "provenance": "Direct Web Video Download",
+      "device_or_source": "Web Video Clip",
+      "capture_setting": "Low-resolution web video, conversational expression",
+      "video_properties": {
+        "resolution": "124x152",
+        "width": 124,
+        "height": 152,
+        "fps": 30.0,
+        "total_frames": 297,
+        "duration_seconds": 9.9,
+        "valid_face_frames": 297,
+        "valid_mouth_crops": 297,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.7407,
+            "fake_probability": 0.3228
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.67,
+            "fake_probability": 0.6615
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": 7.4159,
+            "fake_probability": 0.9994
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": 1.5116,
+            "fake_probability": 0.8193
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.7407,
+          0.67,
+          7.4159,
+          1.5116
+        ],
+        "per_clip_fake_probabilities": [
+          0.3228,
+          0.6615,
+          0.9994,
+          0.8193
+        ],
+        "mean_logit": 2.2142,
+        "final_fake_probability": 0.9015,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 3.1092,
+        "prob_std_dev": 0.2488
+      },
+      "inference_time_sec": 1.119
+    },
+    {
+      "id": "rw_06_web_dl5",
+      "filename": "download (5).mp4",
+      "path": "C:\\Users\\hp\\Downloads\\download (5).mp4",
+      "ground_truth": "REAL",
+      "provenance": "Direct Web Video Download",
+      "device_or_source": "Web Video Clip",
+      "capture_setting": "Low-resolution web video, indoor lighting",
+      "video_properties": {
+        "resolution": "136x184",
+        "width": 136,
+        "height": 184,
+        "fps": 30.0,
+        "total_frames": 300,
+        "duration_seconds": 10.0,
+        "valid_face_frames": 300,
+        "valid_mouth_crops": 300,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 12.94,
+            "fake_probability": 1.0
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": 13.3625,
+            "fake_probability": 1.0
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": 12.8309,
+            "fake_probability": 1.0
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": 8.775,
+            "fake_probability": 0.9998
+          }
+        ],
+        "per_clip_raw_logits": [
+          12.94,
+          13.3625,
+          12.8309,
+          8.775
+        ],
+        "per_clip_fake_probabilities": [
+          1.0,
+          1.0,
+          1.0,
+          0.9998
+        ],
+        "mean_logit": 11.9771,
+        "final_fake_probability": 1.0,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 1.8594,
+        "prob_std_dev": 0.0001
+      },
+      "inference_time_sec": 1.121
+    },
+    {
+      "id": "rw_07_snap_1025",
+      "filename": "Snapchat-1025239733.mp4",
+      "path": "D:\\One Plus\\Snapchat-1025239733.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 720x1280)",
+      "capture_setting": "Handheld selfie video, natural lighting, expressive speech",
+      "video_properties": {
+        "resolution": "720x1280",
+        "width": 720,
+        "height": 1280,
+        "fps": 25.48,
+        "total_frames": 174,
+        "duration_seconds": 6.83,
+        "valid_face_frames": 54,
+        "valid_mouth_crops": 54,
+        "face_detect_rate": 0.3103,
+        "mouth_crop_rate": 0.3103
+      },
+      "inference_output": {
+        "clip_count": 2,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 68,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -1.1197,
+            "fake_probability": 0.2461
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 69,
+            "end_frame": 157,
+            "start_timestamp_sec": 2.708,
+            "valid_mouth_crops": 25,
+            "raw_logit": -2.0844,
+            "fake_probability": 0.1106
+          }
+        ],
+        "per_clip_raw_logits": [
+          -1.1197,
+          -2.0844
+        ],
+        "per_clip_fake_probabilities": [
+          0.2461,
+          0.1106
+        ],
+        "mean_logit": -1.602,
+        "final_fake_probability": 0.1677,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.4824,
+        "prob_std_dev": 0.0678
+      },
+      "inference_time_sec": 9.146
+    },
+    {
+      "id": "rw_08_snap_1189",
+      "filename": "Snapchat-1189577988.mp4",
+      "path": "D:\\One Plus\\Snapchat-1189577988.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 544x960)",
+      "capture_setting": "Handheld selfie video, indoor ambient lighting, head tilt",
+      "video_properties": {
+        "resolution": "544x960",
+        "width": 544,
+        "height": 960,
+        "fps": 24.0,
+        "total_frames": 228,
+        "duration_seconds": 9.5,
+        "valid_face_frames": 225,
+        "valid_mouth_crops": 225,
+        "face_detect_rate": 0.9868,
+        "mouth_crop_rate": 0.9868
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.5433,
+            "fake_probability": 0.6326
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 1.042,
+            "valid_mouth_crops": 25,
+            "raw_logit": 3.1987,
+            "fake_probability": 0.9608
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 2.083,
+            "valid_mouth_crops": 25,
+            "raw_logit": 3.4837,
+            "fake_probability": 0.9702
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 3.125,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.0508,
+            "fake_probability": 0.4873
+          }
+        ],
+        "per_clip_raw_logits": [
+          0.5433,
+          3.1987,
+          3.4837,
+          -0.0508
+        ],
+        "per_clip_fake_probabilities": [
+          0.6326,
+          0.9608,
+          0.9702,
+          0.4873
+        ],
+        "mean_logit": 1.7937,
+        "final_fake_probability": 0.8574,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 1.5649,
+        "prob_std_dev": 0.2092
+      },
+      "inference_time_sec": 6.973
+    },
+    {
+      "id": "rw_09_snap_1698",
+      "filename": "Snapchat-1698098903.mp4",
+      "path": "D:\\One Plus\\Snapchat-1698098903.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 720x1280)",
+      "capture_setting": "Quick selfie video, natural outdoor/indoor ambient",
+      "video_properties": {
+        "resolution": "720x1280",
+        "width": 720,
+        "height": 1280,
+        "fps": 24.87,
+        "total_frames": 49,
+        "duration_seconds": 1.97,
+        "valid_face_frames": 48,
+        "valid_mouth_crops": 48,
+        "face_detect_rate": 0.9796,
+        "mouth_crop_rate": 0.9796
+      },
+      "inference_output": {
+        "clip_count": 1,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -2.0534,
+            "fake_probability": 0.1137
+          }
+        ],
+        "per_clip_raw_logits": [
+          -2.0534
+        ],
+        "per_clip_fake_probabilities": [
+          0.1137
+        ],
+        "mean_logit": -2.0534,
+        "final_fake_probability": 0.1137,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.0,
+        "prob_std_dev": 0.0
+      },
+      "inference_time_sec": 2.713
+    },
+    {
+      "id": "rw_10_snap_2137",
+      "filename": "Snapchat-2137192797.mp4",
+      "path": "D:\\One Plus\\Snapchat-2137192797.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 720x1280)",
+      "capture_setting": "Handheld selfie recording, rapid head motion, conversational speech",
+      "video_properties": {
+        "resolution": "720x1280",
+        "width": 720,
+        "height": 1280,
+        "fps": 25.72,
+        "total_frames": 109,
+        "duration_seconds": 4.24,
+        "valid_face_frames": 109,
+        "valid_mouth_crops": 109,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.0736,
+            "fake_probability": 0.4816
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.972,
+            "valid_mouth_crops": 25,
+            "raw_logit": -1.2192,
+            "fake_probability": 0.2281
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.944,
+            "valid_mouth_crops": 25,
+            "raw_logit": 5.1334,
+            "fake_probability": 0.9941
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.916,
+            "valid_mouth_crops": 25,
+            "raw_logit": 2.3949,
+            "fake_probability": 0.9164
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.0736,
+          -1.2192,
+          5.1334,
+          2.3949
+        ],
+        "per_clip_fake_probabilities": [
+          0.4816,
+          0.2281,
+          0.9941,
+          0.9164
+        ],
+        "mean_logit": 1.5589,
+        "final_fake_probability": 0.8262,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 2.4423,
+        "prob_std_dev": 0.3145
+      },
+      "inference_time_sec": 6.257
+    },
+    {
+      "id": "rw_11_snap_2181",
+      "filename": "Snapchat-218109506.mp4",
+      "path": "D:\\One Plus\\Snapchat-218109506.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 544x960)",
+      "capture_setting": "Long selfie video (>100s), varying lighting, natural conversational speech",
+      "video_properties": {
+        "resolution": "544x960",
+        "width": 544,
+        "height": 960,
+        "fps": 19.87,
+        "total_frames": 2084,
+        "duration_seconds": 104.88,
+        "valid_face_frames": 1804,
+        "valid_mouth_crops": 1804,
+        "face_detect_rate": 0.8656,
+        "mouth_crop_rate": 0.8656
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.6187,
+            "fake_probability": 0.6499
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 1.258,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6338,
+            "fake_probability": 0.3467
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 2.516,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.7147,
+            "fake_probability": 0.3286
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 3.775,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.918,
+            "fake_probability": 0.7146
+          }
+        ],
+        "per_clip_raw_logits": [
+          0.6187,
+          -0.6338,
+          -0.7147,
+          0.918
+        ],
+        "per_clip_fake_probabilities": [
+          0.6499,
+          0.3467,
+          0.3286,
+          0.7146
+        ],
+        "mean_logit": 0.0471,
+        "final_fake_probability": 0.5118,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 0.7296,
+        "prob_std_dev": 0.1739
+      },
+      "inference_time_sec": 58.63
+    },
+    {
+      "id": "rw_12_snap_2721",
+      "filename": "Snapchat-27218158.mp4",
+      "path": "D:\\One Plus\\Snapchat-27218158.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 720x1280)",
+      "capture_setting": "Short selfie clip, dynamic lighting, facial expression changes",
+      "video_properties": {
+        "resolution": "720x1280",
+        "width": 720,
+        "height": 1280,
+        "fps": 27.96,
+        "total_frames": 70,
+        "duration_seconds": 2.5,
+        "valid_face_frames": 70,
+        "valid_mouth_crops": 70,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 2,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -1.6707,
+            "fake_probability": 0.1583
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.894,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5421,
+            "fake_probability": 0.3677
+          }
+        ],
+        "per_clip_raw_logits": [
+          -1.6707,
+          -0.5421
+        ],
+        "per_clip_fake_probabilities": [
+          0.1583,
+          0.3677
+        ],
+        "mean_logit": -1.1064,
+        "final_fake_probability": 0.2485,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.5643,
+        "prob_std_dev": 0.1047
+      },
+      "inference_time_sec": 3.861
+    },
+    {
+      "id": "rw_13_snap_2738",
+      "filename": "Snapchat-273819509.mp4",
+      "path": "D:\\One Plus\\Snapchat-273819509.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 544x960)",
+      "capture_setting": "Handheld front camera, conversational facial movements",
+      "video_properties": {
+        "resolution": "544x960",
+        "width": 544,
+        "height": 960,
+        "fps": 24.0,
+        "total_frames": 137,
+        "duration_seconds": 5.71,
+        "valid_face_frames": 137,
+        "valid_mouth_crops": 137,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6647,
+            "fake_probability": 0.3397
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 1.042,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.9643,
+            "fake_probability": 0.276
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 2.083,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5757,
+            "fake_probability": 0.3599
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 3.125,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6297,
+            "fake_probability": 0.3476
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.6647,
+          -0.9643,
+          -0.5757,
+          -0.6297
+        ],
+        "per_clip_fake_probabilities": [
+          0.3397,
+          0.276,
+          0.3599,
+          0.3476
+        ],
+        "mean_logit": -0.7086,
+        "final_fake_probability": 0.3299,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.151,
+        "prob_std_dev": 0.0324
+      },
+      "inference_time_sec": 4.504
+    },
+    {
+      "id": "rw_14_snap_4435",
+      "filename": "Snapchat-443569667.mp4",
+      "path": "D:\\One Plus\\Snapchat-443569667.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 720x1280)",
+      "capture_setting": "Selfie portrait, outdoor lighting, subtle head movement",
+      "video_properties": {
+        "resolution": "720x1280",
+        "width": 720,
+        "height": 1280,
+        "fps": 20.84,
+        "total_frames": 64,
+        "duration_seconds": 3.07,
+        "valid_face_frames": 40,
+        "valid_mouth_crops": 40,
+        "face_detect_rate": 0.625,
+        "mouth_crop_rate": 0.625
+      },
+      "inference_output": {
+        "clip_count": 1,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 1,
+            "end_frame": 47,
+            "start_timestamp_sec": 0.048,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5023,
+            "fake_probability": 0.377
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.5023
+        ],
+        "per_clip_fake_probabilities": [
+          0.377
+        ],
+        "mean_logit": -0.5023,
+        "final_fake_probability": 0.377,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.0,
+        "prob_std_dev": 0.0
+      },
+      "inference_time_sec": 3.586
+    },
+    {
+      "id": "rw_15_snap_5504",
+      "filename": "Snapchat-550444171.mp4",
+      "path": "D:\\One Plus\\Snapchat-550444171.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 528x864)",
+      "capture_setting": "Extended selfie video (28s), talking head, natural room reverberation/lighting",
+      "video_properties": {
+        "resolution": "528x864",
+        "width": 528,
+        "height": 864,
+        "fps": 25.18,
+        "total_frames": 705,
+        "duration_seconds": 28.0,
+        "valid_face_frames": 705,
+        "valid_mouth_crops": 705,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.4061,
+            "fake_probability": 0.6002
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.993,
+            "valid_mouth_crops": 25,
+            "raw_logit": 29.417,
+            "fake_probability": 1.0
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.986,
+            "valid_mouth_crops": 25,
+            "raw_logit": 11.685,
+            "fake_probability": 1.0
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.978,
+            "valid_mouth_crops": 25,
+            "raw_logit": 9.7021,
+            "fake_probability": 0.9999
+          }
+        ],
+        "per_clip_raw_logits": [
+          0.4061,
+          29.417,
+          11.685,
+          9.7021
+        ],
+        "per_clip_fake_probabilities": [
+          0.6002,
+          1.0,
+          1.0,
+          0.9999
+        ],
+        "mean_logit": 12.8026,
+        "final_fake_probability": 1.0,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 10.4949,
+        "prob_std_dev": 0.1731
+      },
+      "inference_time_sec": 18.51
+    },
+    {
+      "id": "rw_16_snap_6837",
+      "filename": "Snapchat-683760349.mp4",
+      "path": "D:\\One Plus\\Snapchat-683760349.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 720x1280)",
+      "capture_setting": "High-resolution front camera, continuous speech, smiling/laughing",
+      "video_properties": {
+        "resolution": "720x1280",
+        "width": 720,
+        "height": 1280,
+        "fps": 16.7,
+        "total_frames": 231,
+        "duration_seconds": 13.84,
+        "valid_face_frames": 224,
+        "valid_mouth_crops": 224,
+        "face_detect_rate": 0.9697,
+        "mouth_crop_rate": 0.9697
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 1,
+            "end_frame": 25,
+            "start_timestamp_sec": 0.06,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.655,
+            "fake_probability": 0.3419
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 26,
+            "end_frame": 50,
+            "start_timestamp_sec": 1.557,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.8919,
+            "fake_probability": 0.2907
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 51,
+            "end_frame": 75,
+            "start_timestamp_sec": 3.055,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.9872,
+            "fake_probability": 0.2715
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 76,
+            "end_frame": 100,
+            "start_timestamp_sec": 4.552,
+            "valid_mouth_crops": 25,
+            "raw_logit": -1.2714,
+            "fake_probability": 0.219
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.655,
+          -0.8919,
+          -0.9872,
+          -1.2714
+        ],
+        "per_clip_fake_probabilities": [
+          0.3419,
+          0.2907,
+          0.2715,
+          0.219
+        ],
+        "mean_logit": -0.9514,
+        "final_fake_probability": 0.2786,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.2208,
+        "prob_std_dev": 0.044
+      },
+      "inference_time_sec": 12.401
+    },
+    {
+      "id": "rw_17_snap_8431",
+      "filename": "Snapchat-843104320.mp4",
+      "path": "D:\\One Plus\\Snapchat-843104320.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 544x960)",
+      "capture_setting": "Handheld selfie video, indoor ambient lighting",
+      "video_properties": {
+        "resolution": "544x960",
+        "width": 544,
+        "height": 960,
+        "fps": 24.0,
+        "total_frames": 137,
+        "duration_seconds": 5.71,
+        "valid_face_frames": 137,
+        "valid_mouth_crops": 137,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6647,
+            "fake_probability": 0.3397
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 1.042,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.9643,
+            "fake_probability": 0.276
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 2.083,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5757,
+            "fake_probability": 0.3599
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 3.125,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6297,
+            "fake_probability": 0.3476
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.6647,
+          -0.9643,
+          -0.5757,
+          -0.6297
+        ],
+        "per_clip_fake_probabilities": [
+          0.3397,
+          0.276,
+          0.3599,
+          0.3476
+        ],
+        "mean_logit": -0.7086,
+        "final_fake_probability": 0.3299,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.151,
+        "prob_std_dev": 0.0324
+      },
+      "inference_time_sec": 4.417
+    },
+    {
+      "id": "rw_18_snap_8877",
+      "filename": "Snapchat-887733479.mp4",
+      "path": "D:\\One Plus\\Snapchat-887733479.mp4",
+      "ground_truth": "REAL",
+      "provenance": "OnePlus Smartphone Camera (Snapchat Mobile Recording)",
+      "device_or_source": "OnePlus Smartphone Front Camera (Portrait 544x960)",
+      "capture_setting": "Short selfie clip, expressive face",
+      "video_properties": {
+        "resolution": "544x960",
+        "width": 544,
+        "height": 960,
+        "fps": 24.12,
+        "total_frames": 41,
+        "duration_seconds": 1.7,
+        "valid_face_frames": 41,
+        "valid_mouth_crops": 41,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 1,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.4965,
+            "fake_probability": 0.3784
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.4965
+        ],
+        "per_clip_fake_probabilities": [
+          0.3784
+        ],
+        "mean_logit": -0.4965,
+        "final_fake_probability": 0.3784,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.0,
+        "prob_std_dev": 0.0
+      },
+      "inference_time_sec": 1.313
+    },
+    {
+      "id": "rw_19_wa_0058",
+      "filename": "VID-20230224-WA0058.mp4",
+      "path": "D:\\One Plus\\VID-20230224-WA0058.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (480x848)",
+      "capture_setting": "Social messaging media, mobile H.264 compression, conversational face",
+      "video_properties": {
+        "resolution": "480x848",
+        "width": 480,
+        "height": 848,
+        "fps": 29.63,
+        "total_frames": 81,
+        "duration_seconds": 2.73,
+        "valid_face_frames": 81,
+        "valid_mouth_crops": 81,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 3,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 7.8152,
+            "fake_probability": 0.9996
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.844,
+            "valid_mouth_crops": 25,
+            "raw_logit": -2.5907,
+            "fake_probability": 0.0697
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.687,
+            "valid_mouth_crops": 25,
+            "raw_logit": -2.5226,
+            "fake_probability": 0.0743
+          }
+        ],
+        "per_clip_raw_logits": [
+          7.8152,
+          -2.5907,
+          -2.5226
+        ],
+        "per_clip_fake_probabilities": [
+          0.9996,
+          0.0697,
+          0.0743
+        ],
+        "mean_logit": 0.9006,
+        "final_fake_probability": 0.7111,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 4.8894,
+        "prob_std_dev": 0.4373
+      },
+      "inference_time_sec": 2.2
+    },
+    {
+      "id": "rw_20_wa_0060",
+      "filename": "VID-20230224-WA0060.mp4",
+      "path": "D:\\One Plus\\VID-20230224-WA0060.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (480x848)",
+      "capture_setting": "Social messaging media, mobile compression, slight camera jitter",
+      "video_properties": {
+        "resolution": "480x848",
+        "width": 480,
+        "height": 848,
+        "fps": 30.0,
+        "total_frames": 110,
+        "duration_seconds": 3.67,
+        "valid_face_frames": 110,
+        "valid_mouth_crops": 110,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -1.0933,
+            "fake_probability": 0.251
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.2227,
+            "fake_probability": 0.5555
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.0329,
+            "fake_probability": 0.5082
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5965,
+            "fake_probability": 0.3551
+          }
+        ],
+        "per_clip_raw_logits": [
+          -1.0933,
+          0.2227,
+          0.0329,
+          -0.5965
+        ],
+        "per_clip_fake_probabilities": [
+          0.251,
+          0.5555,
+          0.5082,
+          0.3551
+        ],
+        "mean_logit": -0.3585,
+        "final_fake_probability": 0.4113,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.5214,
+        "prob_std_dev": 0.1213
+      },
+      "inference_time_sec": 2.937
+    },
+    {
+      "id": "rw_21_wa_0062",
+      "filename": "VID-20230224-WA0062.mp4",
+      "path": "D:\\One Plus\\VID-20230224-WA0062.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (480x848)",
+      "capture_setting": "Social messaging media, mobile compression, head movement",
+      "video_properties": {
+        "resolution": "480x848",
+        "width": 480,
+        "height": 848,
+        "fps": 30.0,
+        "total_frames": 116,
+        "duration_seconds": 3.87,
+        "valid_face_frames": 116,
+        "valid_mouth_crops": 116,
+        "face_detect_rate": 1.0,
+        "mouth_crop_rate": 1.0
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.3535,
+            "fake_probability": 0.5875
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": 2.3754,
+            "fake_probability": 0.9149
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.2799,
+            "fake_probability": 0.4305
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": 0.4402,
+            "fake_probability": 0.6083
+          }
+        ],
+        "per_clip_raw_logits": [
+          0.3535,
+          2.3754,
+          -0.2799,
+          0.4402
+        ],
+        "per_clip_fake_probabilities": [
+          0.5875,
+          0.9149,
+          0.4305,
+          0.6083
+        ],
+        "mean_logit": 0.7223,
+        "final_fake_probability": 0.6731,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 0.9941,
+        "prob_std_dev": 0.1755
+      },
+      "inference_time_sec": 3.109
+    },
+    {
+      "id": "rw_22_wa_0012",
+      "filename": "VID-20231113-WA0012.mp4",
+      "path": "D:\\One Plus\\VID-20231113-WA0012.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (480x864)",
+      "capture_setting": "Longer mobile video (20.5s), natural conversation, indoor room lighting",
+      "video_properties": {
+        "resolution": "480x864",
+        "width": 480,
+        "height": 864,
+        "fps": 29.6,
+        "total_frames": 606,
+        "duration_seconds": 20.47,
+        "valid_face_frames": 499,
+        "valid_mouth_crops": 499,
+        "face_detect_rate": 0.8234,
+        "mouth_crop_rate": 0.8234
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": 8.3903,
+            "fake_probability": 0.9998
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 56,
+            "start_timestamp_sec": 0.845,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.9167,
+            "fake_probability": 0.2856
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 67,
+            "end_frame": 103,
+            "start_timestamp_sec": 2.263,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.8595,
+            "fake_probability": 0.2974
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 104,
+            "end_frame": 128,
+            "start_timestamp_sec": 3.513,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.7712,
+            "fake_probability": 0.3162
+          }
+        ],
+        "per_clip_raw_logits": [
+          8.3903,
+          -0.9167,
+          -0.8595,
+          -0.7712
+        ],
+        "per_clip_fake_probabilities": [
+          0.9998,
+          0.2856,
+          0.2974,
+          0.3162
+        ],
+        "mean_logit": 1.4607,
+        "final_fake_probability": 0.8116,
+        "decision_threshold": 0.5,
+        "verdict": "FAKE",
+        "is_false_positive": true,
+        "logit_std_dev": 4.0011,
+        "prob_std_dev": 0.3033
+      },
+      "inference_time_sec": 13.93
+    },
+    {
+      "id": "rw_23_wa_0013",
+      "filename": "VID-20231113-WA0013.mp4",
+      "path": "D:\\One Plus\\VID-20231113-WA0013.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (480x864)",
+      "capture_setting": "Mobile messaging recording (9.3s), expressive talking",
+      "video_properties": {
+        "resolution": "480x864",
+        "width": 480,
+        "height": 864,
+        "fps": 30.0,
+        "total_frames": 280,
+        "duration_seconds": 9.33,
+        "valid_face_frames": 252,
+        "valid_mouth_crops": 252,
+        "face_detect_rate": 0.9,
+        "mouth_crop_rate": 0.9
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.9955,
+            "fake_probability": 0.2698
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6918,
+            "fake_probability": 0.3336
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 1.667,
+            "valid_mouth_crops": 25,
+            "raw_logit": -1.1633,
+            "fake_probability": 0.2381
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 2.5,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.743,
+            "fake_probability": 0.3223
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.9955,
+          -0.6918,
+          -1.1633,
+          -0.743
+        ],
+        "per_clip_fake_probabilities": [
+          0.2698,
+          0.3336,
+          0.2381,
+          0.3223
+        ],
+        "mean_logit": -0.8984,
+        "final_fake_probability": 0.2894,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.1913,
+        "prob_std_dev": 0.0389
+      },
+      "inference_time_sec": 6.809
+    },
+    {
+      "id": "rw_24_wa_0009_dec",
+      "filename": "VID-20231212-WA0009.mp4",
+      "path": "D:\\One Plus\\VID-20231212-WA0009.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (848x480 Landscape)",
+      "capture_setting": "Extended landscape video (62.4s), subject talking in natural setting",
+      "video_properties": {
+        "resolution": "848x480",
+        "width": 848,
+        "height": 480,
+        "fps": 60.2,
+        "total_frames": 3754,
+        "duration_seconds": 62.36,
+        "valid_face_frames": 3746,
+        "valid_mouth_crops": 3746,
+        "face_detect_rate": 0.9979,
+        "mouth_crop_rate": 0.9979
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.223,
+            "fake_probability": 0.4445
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.415,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5726,
+            "fake_probability": 0.3606
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 0.831,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5482,
+            "fake_probability": 0.3663
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 99,
+            "start_timestamp_sec": 1.246,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.4251,
+            "fake_probability": 0.3953
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.223,
+          -0.5726,
+          -0.5482,
+          -0.4251
+        ],
+        "per_clip_fake_probabilities": [
+          0.4445,
+          0.3606,
+          0.3663,
+          0.3953
+        ],
+        "mean_logit": -0.4422,
+        "final_fake_probability": 0.3912,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.1384,
+        "prob_std_dev": 0.0332
+      },
+      "inference_time_sec": 83.995
+    },
+    {
+      "id": "rw_25_wa_0009_dec19",
+      "filename": "VID-20231219-WA0009.mp4",
+      "path": "D:\\One Plus\\VID-20231219-WA0009.mp4",
+      "ground_truth": "REAL",
+      "provenance": "WhatsApp Mobile Video (OnePlus Local Storage)",
+      "device_or_source": "WhatsApp Mobile Compressed Video (480x864)",
+      "capture_setting": "Social messaging clip (6.6s), indoor ambient",
+      "video_properties": {
+        "resolution": "480x864",
+        "width": 480,
+        "height": 864,
+        "fps": 60.05,
+        "total_frames": 396,
+        "duration_seconds": 6.59,
+        "valid_face_frames": 221,
+        "valid_mouth_crops": 221,
+        "face_detect_rate": 0.5581,
+        "mouth_crop_rate": 0.5581
+      },
+      "inference_output": {
+        "clip_count": 4,
+        "clips": [
+          {
+            "clip_index": 1,
+            "start_frame": 0,
+            "end_frame": 24,
+            "start_timestamp_sec": 0.0,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5558,
+            "fake_probability": 0.3645
+          },
+          {
+            "clip_index": 2,
+            "start_frame": 25,
+            "end_frame": 49,
+            "start_timestamp_sec": 0.416,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.5175,
+            "fake_probability": 0.3734
+          },
+          {
+            "clip_index": 3,
+            "start_frame": 50,
+            "end_frame": 74,
+            "start_timestamp_sec": 0.833,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.6403,
+            "fake_probability": 0.3452
+          },
+          {
+            "clip_index": 4,
+            "start_frame": 75,
+            "end_frame": 193,
+            "start_timestamp_sec": 1.249,
+            "valid_mouth_crops": 25,
+            "raw_logit": -0.7933,
+            "fake_probability": 0.3115
+          }
+        ],
+        "per_clip_raw_logits": [
+          -0.5558,
+          -0.5175,
+          -0.6403,
+          -0.7933
+        ],
+        "per_clip_fake_probabilities": [
+          0.3645,
+          0.3734,
+          0.3452,
+          0.3115
+        ],
+        "mean_logit": -0.6267,
+        "final_fake_probability": 0.3483,
+        "decision_threshold": 0.5,
+        "verdict": "REAL",
+        "is_false_positive": false,
+        "logit_std_dev": 0.1059,
+        "prob_std_dev": 0.0237
+      },
+      "inference_time_sec": 10.827
+    }
+  ]
+}

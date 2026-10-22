@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+.idea/
+.vscode/
+
+# Ignore raw heavy dataset files (116MB)
+dataset/*.csv
+
+# Ignore large model weights and checkpoints (>100MB blocked by GitHub)
+*.bin
+*.safetensors
+*.pth
+*.pt
+models/weights/*.pth
+models/roberta_fake_news/*.bin
+models/roberta_fake_news/*.safetensors
+
+# Ensure trained lightweight classical model weights are committed for deployment
+!model/*.pkl
+
+.vercel

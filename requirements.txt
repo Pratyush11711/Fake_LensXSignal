@@ -1,0 +1,26 @@
+# =====================================================================
+# FakeLens & SIGNAL - Unified Multimodal Detection Platform Dependencies
+# Detect misinformation in text. Uncover deepfakes in video.
+# =====================================================================
+
+# --- Core Web & Serving Frameworks ---
+Flask>=3.0.0
+fastapi>=0.111.0,<1.0
+uvicorn[standard]>=0.30.0,<1.0
+python-multipart>=0.0.9
+gunicorn>=21.2.0
+waitress>=3.0.0
+
+# --- NLP & Linear Text Classification Stack ---
+scikit-learn>=1.4.0
+joblib>=1.3.0
+
+# --- Deepfake Video Detection & Computer Vision Stack ---
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.40.0
+opencv-python-headless>=4.8.0
+numpy>=1.26.0
+Pillow>=10.0.0
+timm>=0.9.0

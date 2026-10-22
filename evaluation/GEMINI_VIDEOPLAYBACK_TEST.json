@@ -1,0 +1,24 @@
+{
+  "video": {
+    "filename": "videoplayback.mp4",
+    "path": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+    "duration_seconds": 167.3,
+    "resolution": "640x352",
+    "fps": 30.0,
+    "frame_count": 5019,
+    "size_mb": 7.65,
+    "ground_truth": "REAL",
+    "ground_truth_note": "User-verified real in-the-wild video"
+  },
+  "gemini_execution": {
+    "model_used": "gemini-3.6-flash",
+    "http_status": 200,
+    "total_api_time_seconds": 39.25,
+    "file_cleanup_status": 200,
+    "verdict": "REAL",
+    "confidence": 0.75,
+    "evidence": "Consistent facial motion, natural lip-syncing, uniform lighting, and seamless physical integration with the guitar throughout the clip.",
+    "timestamps": "NONE",
+    "raw_response": "VERDICT: REAL\nCONFIDENCE: 0.75\nEVIDENCE: Consistent facial motion, natural lip-syncing, uniform lighting, and seamless physical integration with the guitar throughout the clip.\nTIMESTAMPS: NONE"
+  }
+}

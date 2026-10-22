@@ -1,0 +1,43 @@
+{
+  "explanation": "The ISOT Fake News Dataset contains stylistic source artifacts (e.g., 'Reuters' datelines in real articles). Comparing the model trained on raw text vs dateline-stripped text quantifies the extent to which the linear classifier relies on stylistic metadata vs semantic content.",
+  "original_model": {
+    "dataset_version": "Original Raw Text (Contains Source Artifacts)",
+    "accuracy": 0.9914,
+    "precision": 0.9935,
+    "recall": 0.9877,
+    "f1_score": 0.9906,
+    "confusion_matrix": {
+      "tn": 4216,
+      "fp": 23,
+      "fn": 44,
+      "tp": 3538,
+      "matrix": [
+        [
+          4216,
+          23
+        ],
+        [
+          44,
+          3538
+        ]
+      ]
+    }
+  },
+  "source_stripped_model": {
+    "dataset_version": "Cleaned / Dateline-Stripped Text",
+    "accuracy": 0.9833,
+    "precision": 0.9892,
+    "recall": 0.974,
+    "f1_score": 0.9816,
+    "confusion_matrix": {
+      "tn": 4201,
+      "fp": 38,
+      "fn": 93,
+      "tp": 3489
+    }
+  },
+  "deltas": {
+    "accuracy_change": -0.0081,
+    "f1_change": -0.009
+  }
+}

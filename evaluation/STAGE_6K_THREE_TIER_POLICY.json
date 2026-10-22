@@ -1,0 +1,182 @@
+{
+  "evaluation_title": "STAGE 6K \u2014 CONTROLLED THREE-TIER FORENSIC OUTPUT POLICY",
+  "timestamp": "2026-09-08 20:31:42",
+  "policy_version": "3-tier-provisional-v1",
+  "status": "VALIDATED_AND_DEPLOYED",
+  "policy_description": "Retirement of binary REAL/FAKE user-facing assertions. Introduction of provisional 3-tier forensic uncertainty bands and raw forensic anomaly score reporting to prevent catastrophic false accusations on in-the-wild video.",
+  "tier_definitions": {
+    "LIKELY_AUTHENTIC": {
+      "score_range": "< 0.40",
+      "tier_name": "LIKELY AUTHENTIC",
+      "advisory": "Low forensic anomaly signal detected. This does not guarantee authenticity."
+    },
+    "INCONCLUSIVE_NEEDS_REVIEW": {
+      "score_range": "0.40 <= score < 0.90",
+      "tier_name": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "advisory": "Ambiguous forensic signal. Independent review is recommended."
+    },
+    "SIGNS_OF_POSSIBLE_MANIPULATION": {
+      "score_range": "score >= 0.90",
+      "tier_name": "SIGNS OF POSSIBLE MANIPULATION",
+      "advisory": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended."
+    }
+  },
+  "boundary_tests": [
+    {
+      "score": 0.0,
+      "expected_tier": "LIKELY AUTHENTIC",
+      "actual_tier": "LIKELY AUTHENTIC",
+      "advisory_message": "Low forensic anomaly signal detected. This does not guarantee authenticity.",
+      "passed": true
+    },
+    {
+      "score": 0.39,
+      "expected_tier": "LIKELY AUTHENTIC",
+      "actual_tier": "LIKELY AUTHENTIC",
+      "advisory_message": "Low forensic anomaly signal detected. This does not guarantee authenticity.",
+      "passed": true
+    },
+    {
+      "score": 0.4,
+      "expected_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "actual_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "advisory_message": "Ambiguous forensic signal. Independent review is recommended.",
+      "passed": true
+    },
+    {
+      "score": 0.5,
+      "expected_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "actual_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "advisory_message": "Ambiguous forensic signal. Independent review is recommended.",
+      "passed": true
+    },
+    {
+      "score": 0.76,
+      "expected_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "actual_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "advisory_message": "Ambiguous forensic signal. Independent review is recommended.",
+      "passed": true
+    },
+    {
+      "score": 0.89,
+      "expected_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "actual_tier": "INCONCLUSIVE \u2014 NEEDS REVIEW",
+      "advisory_message": "Ambiguous forensic signal. Independent review is recommended.",
+      "passed": true
+    },
+    {
+      "score": 0.9,
+      "expected_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "actual_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+      "passed": true
+    },
+    {
+      "score": 0.99,
+      "expected_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "actual_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+      "passed": true
+    },
+    {
+      "score": 1.0,
+      "expected_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "actual_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+      "passed": true
+    }
+  ],
+  "video_evaluations": [
+    {
+      "category": "Primary Real Case (High Anomaly)",
+      "filename": "videoplayback.mp4",
+      "filepath": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+      "ground_truth": "REAL",
+      "provenance": "User-verified authentic web video (in-the-wild high anomaly)",
+      "forensic_score": 0.9913,
+      "detection_score": 0.9913,
+      "legacy_result": "FAKE",
+      "assessment_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "assessment_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+      "frames_analyzed": 5019,
+      "face_coverage": 1.0,
+      "execution_time": 43.1856,
+      "detect_status_code": 200,
+      "analyze_status_code": 200
+    },
+    {
+      "category": "Low-Score Known-Real",
+      "filename": "download.mp4",
+      "filepath": "C:\\Users\\hp\\Downloads\\download.mp4",
+      "ground_truth": "REAL",
+      "provenance": "Authentic web video download (low anomaly score 0.0025)",
+      "forensic_score": 0.0025,
+      "detection_score": 0.0025,
+      "legacy_result": "REAL",
+      "assessment_tier": "LIKELY AUTHENTIC",
+      "assessment_message": "Low forensic anomaly signal detected. This does not guarantee authenticity.",
+      "frames_analyzed": 297,
+      "face_coverage": 1.0,
+      "execution_time": 0.9857,
+      "detect_status_code": 200,
+      "analyze_status_code": 200
+    },
+    {
+      "category": "High-Score Known-Real",
+      "filename": "download (5).mp4",
+      "filepath": "C:\\Users\\hp\\Downloads\\download (5).mp4",
+      "ground_truth": "REAL",
+      "provenance": "Authentic web/mobile download with heavy compression (high anomaly score 1.0000)",
+      "forensic_score": 1.0,
+      "detection_score": 1.0,
+      "legacy_result": "FAKE",
+      "assessment_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "assessment_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+      "frames_analyzed": 300,
+      "face_coverage": 1.0,
+      "execution_time": 1.0648,
+      "detect_status_code": 200,
+      "analyze_status_code": 200
+    },
+    {
+      "category": "Known Fake Video",
+      "filename": "01_03__hugging_happy__ISF9SP4G.mp4",
+      "filepath": "D:\\benchmark_dataset\\fake\\01_03__hugging_happy__ISF9SP4G.mp4",
+      "ground_truth": "FAKE",
+      "provenance": "DFD Benchmark synthetic DeepFake manipulation (high anomaly score 0.9724)",
+      "forensic_score": 0.9999,
+      "detection_score": 0.9999,
+      "legacy_result": "FAKE",
+      "assessment_tier": "SIGNS OF POSSIBLE MANIPULATION",
+      "assessment_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+      "frames_analyzed": 605,
+      "face_coverage": 1.0,
+      "execution_time": 66.0827,
+      "detect_status_code": 200,
+      "analyze_status_code": 200
+    }
+  ],
+  "backward_compatibility": {
+    "endpoints_verified": [
+      "POST /detect",
+      "POST /v1/analyze",
+      "GET /health"
+    ],
+    "legacy_fields_retained": [
+      "result",
+      "detection_score",
+      "fake_probability",
+      "confidence",
+      "decision_threshold"
+    ],
+    "new_fields_added": [
+      "forensic_score",
+      "assessment_tier",
+      "assessment_message",
+      "provisional_thresholds"
+    ],
+    "model_inference_untouched": true,
+    "preprocessing_untouched": true,
+    "weights_untouched": true
+  }
+}

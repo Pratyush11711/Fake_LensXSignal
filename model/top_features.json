@@ -1,0 +1,206 @@
+{
+  "fake_indicative_features": [
+    {
+      "feature": "video",
+      "coefficient": 9.8186
+    },
+    {
+      "feature": "image",
+      "coefficient": 6.2313
+    },
+    {
+      "feature": "read",
+      "coefficient": 6.1894
+    },
+    {
+      "feature": "just",
+      "coefficient": 6.013
+    },
+    {
+      "feature": "featured image",
+      "coefficient": 5.9856
+    },
+    {
+      "feature": "featured",
+      "coefficient": 5.9225
+    },
+    {
+      "feature": "obama",
+      "coefficient": 5.2092
+    },
+    {
+      "feature": "gop",
+      "coefficient": 5.09
+    },
+    {
+      "feature": "president trump",
+      "coefficient": 4.7
+    },
+    {
+      "feature": "watch",
+      "coefficient": 4.499
+    },
+    {
+      "feature": "america",
+      "coefficient": 4.45
+    },
+    {
+      "feature": "getty",
+      "coefficient": 4.2124
+    },
+    {
+      "feature": "hillary",
+      "coefficient": 4.1177
+    },
+    {
+      "feature": "getty images",
+      "coefficient": 4.0089
+    },
+    {
+      "feature": "breaking",
+      "coefficient": 3.8266
+    },
+    {
+      "feature": "president obama",
+      "coefficient": 3.6871
+    },
+    {
+      "feature": "mr",
+      "coefficient": 3.6063
+    },
+    {
+      "feature": "images",
+      "coefficient": 3.5929
+    },
+    {
+      "feature": "com",
+      "coefficient": 3.5702
+    },
+    {
+      "feature": "like",
+      "coefficient": 3.2083
+    },
+    {
+      "feature": "sen",
+      "coefficient": 3.1602
+    },
+    {
+      "feature": "rep",
+      "coefficient": 3.0787
+    },
+    {
+      "feature": "pic",
+      "coefficient": 2.9509
+    },
+    {
+      "feature": "american",
+      "coefficient": 2.913
+    },
+    {
+      "feature": "twitter com",
+      "coefficient": 2.9005
+    }
+  ],
+  "real_indicative_features": [
+    {
+      "feature": "reuters",
+      "coefficient": -21.3199
+    },
+    {
+      "feature": "washington reuters",
+      "coefficient": -8.747
+    },
+    {
+      "feature": "president donald",
+      "coefficient": -5.452
+    },
+    {
+      "feature": "washington",
+      "coefficient": -4.9834
+    },
+    {
+      "feature": "wednesday",
+      "coefficient": -4.7875
+    },
+    {
+      "feature": "tuesday",
+      "coefficient": -4.6007
+    },
+    {
+      "feature": "reuters president",
+      "coefficient": -4.454
+    },
+    {
+      "feature": "thursday",
+      "coefficient": -4.4118
+    },
+    {
+      "feature": "nov",
+      "coefficient": -3.8482
+    },
+    {
+      "feature": "monday",
+      "coefficient": -3.7013
+    },
+    {
+      "feature": "republican",
+      "coefficient": -3.6871
+    },
+    {
+      "feature": "said statement",
+      "coefficient": -3.6084
+    },
+    {
+      "feature": "friday",
+      "coefficient": -3.5601
+    },
+    {
+      "feature": "told reuters",
+      "coefficient": -3.359
+    },
+    {
+      "feature": "minister",
+      "coefficient": -3.2447
+    },
+    {
+      "feature": "spokesman",
+      "coefficient": -3.1454
+    },
+    {
+      "feature": "president barack",
+      "coefficient": -3.0164
+    },
+    {
+      "feature": "york reuters",
+      "coefficient": -2.7965
+    },
+    {
+      "feature": "democratic",
+      "coefficient": -2.7184
+    },
+    {
+      "feature": "comment",
+      "coefficient": -2.7132
+    },
+    {
+      "feature": "year",
+      "coefficient": -2.6659
+    },
+    {
+      "feature": "reporters",
+      "coefficient": -2.6566
+    },
+    {
+      "feature": "percent",
+      "coefficient": -2.6172
+    },
+    {
+      "feature": "trump said",
+      "coefficient": -2.6131
+    },
+    {
+      "feature": "london",
+      "coefficient": -2.577
+    }
+  ]
+}

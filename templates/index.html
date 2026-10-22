@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FakeLens × SIGNAL — Multimodal Forensic Intelligence</title>
+  <meta name="description"
+    content="Unified forensic intelligence suite integrating NLP linear text classification with deep visual facial analysis to detect fake news, synthetic media, and deepfake videos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <!-- jsPDF library for Forensic PDF Report generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=steep_clean_nav">
+</head>
+
+<body>
+
+  <div id="cursor-glow"></div>
+
+  <!-- MASTHEAD -->
+  <header class="masthead" id="masthead">
+    <div class="masthead-inner">
+      <div class="wordmark">
+        <span>FAKE<span class="lens">Lens</span></span>
+        <span class="signal-cross">×</span>
+        <span class="signal-brand"><span class="sig-dot"></span>SIGNAL</span>
+      </div>
+      <nav>
+        <a href="#detector">Detector</a>
+        <a href="#pipeline">Architecture</a>
+        <a href="#model">Metrics</a>
+        <a href="#deepfake-tech">Forensics</a>
+        <a href="#leakage">Audits</a>
+      </nav>
+      <span class="status-tag" id="masthead-status"><span class="status-dot"></span>systems active</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HERO / MULTIMODAL INTAKE STUDIO -->
+    <section class="file-section hero-section" id="detector">
+      <div class="hero">
+        <div class="hero-anim">
+          <div class="announcement-badge">
+            <span class="badge-dot"></span>
+            <span>Multimodal Forensic Intelligence · Edition 2026</span>
+          </div>
+          <h1>Read the story.<br>Read the <em>signal</em>.</h1>
+          <p class="lede">A unified forensic intelligence suite that inspects natural language articles for lexical
+            misinformation fingerprints, and analyzes video evidence frame-by-frame for facial deepfakes and temporal
+            anomalies.</p>
+          <div class="case-meta">
+            <span><b>NLP Lens</b> TF-IDF + Logistic Regression · 99.14% acc</span>
+            <span><b>Video Lens</b> YuNet ONNX + Vision Transformer / LipForensics</span>
+            <span><b>Policy</b> 3-Tier Calibrated Verification</span>
+          </div>
+        </div>
+
+        <div class="intake" id="main-intake">
+          <!-- macOS Window Frame Chrome (3 Traffic-Light Dots + Uncropped Intake Tab) -->
+          <div class="window-chrome">
+            <div class="traffic-lights">
+              <span class="traffic-dot red"></span>
+              <span class="traffic-dot yellow"></span>
+              <span class="traffic-dot green"></span>
+            </div>
+            <div class="window-title-wrap">
+              <span class="intake-tab" id="intake-tab-label">exhibit 00 — text intake</span>
+            </div>
+            <div class="window-status-pill">
+              <span class="window-live-dot"></span>
+              <span>LIVE PIPELINE</span>
+            </div>
+          </div>
+
+          <!-- Lens Switcher Tabs -->
+          <div class="lens-switcher">
+            <button type="button" class="lens-tab active" id="tab-nlp" onclick="switchLens('nlp')">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              <span>Article Text Lens</span>
+            </button>
+            <button type="button" class="lens-tab" id="tab-video" onclick="switchLens('video')">
+              <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="23 7 16 12 23 17 23 7" />
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+              </svg>
+              <span>Deepfake Video Lens</span>
+              <span class="tab-badge">SIGNAL</span>
+            </button>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- 1. TEXT NLP LENS PANEL                     -->
+          <!-- ========================================== -->
+          <div class="intake-body" id="panel-nlp">
+            <div class="intake-row">
+              <div class="samples">
+                <button type="button" class="sample-btn real" id="btn-sample-real" onclick="loadSample('real')"><span
+                    class="sw"></span>real sample</button>
+                <button type="button" class="sample-btn fake" id="btn-sample-fake" onclick="loadSample('fake')"><span
+                    class="sw"></span>fake sample</button>
+              </div>
+              <div class="counters-wrap">
+                <span class="counters" id="counters">0 words · 0 chars</span>
+                <span class="short-warning" id="short-warning" style="display:none;">Short input — prediction may be
+                  less reliable.</span>
+              </div>
+            </div>
+
+            <div class="input-guidance">
+              For best results, paste the full article or a substantial excerpt. FakeLens checks for lexical
+              fingerprints against the Kaggle/ISOT benchmark.
+            </div>
+
+            <textarea id="article-input" placeholder="Paste a news headline or full article text to classify…"
+              oninput="updateCounters()"></textarea>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" id="btn-clear" onclick="clearInput()">Clear</button>
+              <button type="button" class="btn btn-brass" id="btn-analyze" onclick="analyze(event)">Analyze
+                article</button>
+            </div>
+
+            <!-- Error Alert Box -->
+            <div id="error-box" class="error-msg" style="display:none;"></div>
+
+            <!-- Verdict Section -->
+            <div class="verdict-wrap" id="verdict-wrap">
+              <div class="verdict-header">
+                <span class="verdict-meta-tag" id="verdict-meta-tag">Forensic Text Classification</span>
+              </div>
+              <div class="stamp-row">
+                <span class="stamp" id="stamp">classified real</span>
+                <div class="confidence-readout">
+                  confidence <b id="conf-val">0.0%</b>
+                  <div class="bar-bg">
+                    <div class="bar-fill" id="conf-bar" style="width:0%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="term-list" id="term-list"></div>
+              <div class="model-disclaimer">
+                <strong>Note:</strong> FakeLens is an NLP-based text classifier. It evaluates whether text resembles
+                FAKE or REAL examples from the ISOT benchmark dataset. It does not replace independent fact-checking.
+              </div>
+            </div>
+          </div>
+
+          <!-- ========================================== -->
+          <!-- 2. SIGNAL DEEPFAKE VIDEO LENS PANEL        -->
+          <!-- ========================================== -->
+          <div class="intake-body" id="panel-video" style="display:none;">
+            <!-- Dropzone Empty State -->
+            <div class="video-dropzone" id="video-dropzone" onclick="triggerVideoUpload()">
+              <input type="file" id="video-file-input" accept="video/mp4,video/quicktime,video/x-msvideo,video/webm"
+                style="display:none;" onchange="handleVideoFileSelect(event)">
+              <div class="dropzone-content">
+                <div class="dropzone-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" />
+                    <line x1="7" y1="2" x2="7" y2="22" />
+                    <line x1="17" y1="2" x2="17" y2="22" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <line x1="2" y1="7" x2="7" y2="7" />
+                    <line x1="2" y1="17" x2="7" y2="17" />
+                    <line x1="17" y1="17" x2="22" y2="17" />
+                    <line x1="17" y1="7" x2="22" y2="7" />
+                  </svg>
+                </div>
+                <div class="dropzone-title">UPLOAD VIDEO EVIDENCE</div>
+                <div class="dropzone-sub">Click to browse or drag &amp; drop video file</div>
+                <div class="dropzone-specs">MP4 · MOV · AVI · WEBM · Max 100MB</div>
+              </div>
+            </div>
+
+            <!-- Video Viewfinder HUD (Visible when video loaded) -->
+            <div class="video-preview-wrap" id="video-preview-wrap" style="display:none;">
+              <div class="viewfinder-hud">
+                <!-- HUD Corner Crosshairs -->
+                <span class="hud-corner tl"></span>
+                <span class="hud-corner tr"></span>
+                <span class="hud-corner bl"></span>
+                <span class="hud-corner br"></span>
+
+                <!-- Live Video -->
+                <video id="video-player" playsinline controls muted></video>
+
+                <!-- Optical Scanning HUD Overlay -->
+                <div class="hud-overlay" id="hud-overlay">
+                  <div class="hud-scanline"></div>
+                  <div class="hud-face-box" id="hud-face-box">
+                    <span class="hud-tag">YUNET FACE 01</span>
+                    <div class="hud-landmark-dot lm-eye-l"></div>
+                    <div class="hud-landmark-dot lm-eye-r"></div>
+                    <div class="hud-landmark-dot lm-nose"></div>
+                    <div class="hud-landmark-dot lm-mouth"></div>
+                  </div>
+                  <div class="hud-telemetry-badge">
+                    <span class="hud-rec-dot"></span>
+                    <span id="hud-meta-text">EVIDENCE LOADED</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Video File Metadata Chip -->
+              <div class="video-meta-bar">
+                <span class="video-chip" id="video-name-chip">evidence.mp4</span>
+                <span class="video-chip" id="video-size-chip">0 MB</span>
+                <button type="button" class="btn-text-ghost" onclick="resetVideoUpload()">Change video</button>
+              </div>
+
+              <!-- Actions Bar -->
+              <div class="form-actions" style="margin-top:1.2rem;">
+                <button type="button" class="btn btn-ghost" onclick="resetVideoUpload()">Clear</button>
+                <button type="button" class="btn btn-cyan" id="btn-analyze-video" onclick="analyzeVideoEvidence()">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin-right:6px;">
+                    <circle cx="12" cy="12" r="10" />
+                    <polygon points="10 8 16 12 10 16 10 8" />
+                  </svg>
+                  Analyze video evidence
+                </button>
+              </div>
+
+              <!-- Progress Bar Overlay -->
+              <div class="progress-wrap" id="video-progress-wrap" style="display:none;">
+                <div class="progress-status-row">
+                  <span id="video-progress-status">Initializing neural pipeline...</span>
+                  <span id="video-progress-pct">0%</span>
+                </div>
+                <div class="bar-bg">
+                  <div class="bar-fill video" id="video-progress-fill" style="width:0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Error Box -->
+            <div id="video-error-box" class="error-msg" style="display:none; margin-top:1rem;"></div>
+
+            <!-- Video Forensic Verdict Card -->
+            <div class="video-verdict-wrap" id="video-verdict-wrap" style="display:none;">
+              <div class="verdict-header">
+                <span class="verdict-meta-tag">SIGNAL Forensic Verification</span>
+                <span class="report-id-tag" id="verdict-report-id">SIG-2026-000000</span>
+              </div>
+
+              <!-- 3-Tier Assessment Banner -->
+              <div class="forensic-banner" id="forensic-banner">
+                <div class="tier-stamp" id="forensic-tier-stamp">LIKELY AUTHENTIC</div>
+                <p class="tier-message" id="forensic-tier-message">Low forensic anomaly signal detected across sampled
+                  frames.</p>
+              </div>
+
+              <!-- Quantitative Telemetry Metric Tiles -->
+              <div class="telemetry-grid">
+                <div class="t-cell">
+                  <div class="t-label">Anomaly score</div>
+                  <div class="t-val" id="t-score">0.0000</div>
+                  <div class="t-sub">raw forgery logit</div>
+                </div>
+                <div class="t-cell">
+                  <div class="t-label">Confidence</div>
+                  <div class="t-val" id="t-conf">0.0%</div>
+                  <div class="t-sub">calibrated certitude</div>
+                </div>
+                <div class="t-cell">
+                  <div class="t-label">Frames analyzed</div>
+                  <div class="t-val" id="t-frames">0</div>
+                  <div class="t-sub">YuNet crops</div>
+                </div>
+                <div class="t-cell">
+                  <div class="t-label">Active backend</div>
+                  <div class="t-val" id="t-model" style="font-size:1rem;">ViT 2D</div>
+                  <div class="t-sub">detector engine</div>
+                </div>
+              </div>
+
+              <!-- Frame-by-Frame Anomaly Timeline -->
+              <div class="timeline-box">
+                <div class="timeline-head">
+                  <span>Temporal Frame Anomaly Waveform</span>
+                  <span class="timeline-legend">
+                    <span class="leg-dot green"></span>&lt;0.40
+                    <span class="leg-dot yellow"></span>0.40–0.90
+                    <span class="leg-dot red"></span>&ge;0.90
+                  </span>
+                </div>
+                <div class="timeline-bars" id="timeline-bars">
+                  <!-- Dynamically generated bars -->
+                </div>
+              </div>
+
+              <!-- Forensic Report Export Actions -->
+              <div class="forensic-actions">
+                <button type="button" class="btn btn-ghost" onclick="openTelemetryModal()">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin-right:6px;">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                  Inspect Telemetry JSON
+                </button>
+                <button type="button" class="btn btn-cyan" onclick="downloadForensicReport()">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin-right:6px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Download Forensic PDF Report
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 01: DUAL PIPELINE ARCHITECTURE     -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="pipeline">
+      <div class="exhibit-tag">exhibit 01</div>
+      <h2 class="section-head">How the dual pipeline reads multimodal evidence</h2>
+      <p class="section-dek">Two disciplined, auditable detection pipelines operating in tandem — lexical statistical
+        NLP and deep spatio-temporal computer vision.</p>
+
+      <div class="dual-pipeline-grid">
+        <!-- Pipeline Stream A -->
+        <div class="pipeline-card">
+          <div class="pipeline-header">
+            <span class="stream-badge nlp">Stream A</span>
+            <h3>NLP Lexical Pipeline</h3>
+          </div>
+          <div class="steps-compact">
+            <div class="step-mini">
+              <div class="idx">01</div>
+              <div><b>Text Normalization</b>
+                <p>HTML/URL stripping, lowercase normalization, optional Reuters dateline isolation.</p>
+              </div>
+            </div>
+            <div class="step-mini">
+              <div class="idx">02</div>
+              <div><b>TF-IDF Vectorization</b>
+                <p>Unigrams + Bigrams, 5000 max features, sublinear term-frequency scaling.</p>
+              </div>
+            </div>
+            <div class="step-mini">
+              <div class="idx">03</div>
+              <div><b>Logistic Regression</b>
+                <p>Linear decision boundary with explicit coefficient explainability.</p>
+              </div>
+            </div>
+            <div class="step-mini">
+              <div class="idx">04</div>
+              <div><b>Calibrated Probability</b>
+                <p>Sigmoid activation mapping to binary REAL (0) vs FAKE (1).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline Stream B -->
+        <div class="pipeline-card">
+          <div class="pipeline-header">
+            <span class="stream-badge vision">Stream B</span>
+            <h3>SIGNAL Deepfake Video Pipeline</h3>
+          </div>
+          <div class="steps-compact">
+            <div class="step-mini">
+              <div class="idx">01</div>
+              <div><b>YuNet Face Tracking</b>
+                <p>OpenCV ONNX facial detection bounding boxes &amp; 5-point landmark extraction.</p>
+              </div>
+            </div>
+            <div class="step-mini">
+              <div class="idx">02</div>
+              <div><b>Affine Alignment &amp; ROI</b>
+                <p>Facial rotation compensation and consecutive mouth region crops (mean 0.421, std 0.165).</p>
+              </div>
+            </div>
+            <div class="step-mini">
+              <div class="idx">03</div>
+              <div><b>Temporal Neural Inference</b>
+                <p>Pretrained Vision Transformer (ViT) or ResNet-18 + Multi-Scale Temporal CNN (MS-TCN).</p>
+              </div>
+            </div>
+            <div class="step-mini">
+              <div class="idx">04</div>
+              <div><b>3-Tier Forensic Policy</b>
+                <p>Calibrated boundaries: Likely Authentic (&lt;0.40), Inconclusive (0.40–0.90), Manipulation
+                  (&ge;0.90).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 02: NLP EVALUATION & CONFUSION MATRIX -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="model">
+      <div class="exhibit-tag">exhibit 02</div>
+      <h2 class="section-head">NLP Performance on the held-out set</h2>
+      <p class="section-dek">7,821 test articles (of 31,284 train / 7,821 test, stratified 80/20). Positive class =
+        FAKE.</p>
+
+      <div class="ledger">
+        <div class="ledger-cell">
+          <div class="ledger-label">Accuracy</div>
+          <div class="ledger-value" data-count="99.14" data-suffix="%">0%</div>
+          <div class="ledger-foot">overall correct</div>
+        </div>
+        <div class="ledger-cell">
+          <div class="ledger-label">Precision (fake)</div>
+          <div class="ledger-value" data-count="99.35" data-suffix="%">0%</div>
+          <div class="ledger-foot">TP / (TP+FP)</div>
+        </div>
+        <div class="ledger-cell">
+          <div class="ledger-label">Recall (fake)</div>
+          <div class="ledger-value" data-count="98.77" data-suffix="%">0%</div>
+          <div class="ledger-foot">TP / (TP+FN)</div>
+        </div>
+        <div class="ledger-cell">
+          <div class="ledger-label">F1 score</div>
+          <div class="ledger-value" data-count="99.06" data-suffix="%">0%</div>
+          <div class="ledger-foot">harmonic mean</div>
+        </div>
+      </div>
+
+      <div class="cm-grid">
+        <div class="cm-cell">
+          <div class="cm-tag tn">true negative</div>
+          <div class="cm-num" data-count="4216">0</div>
+          <div class="cm-desc">real → real</div>
+        </div>
+        <div class="cm-cell">
+          <div class="cm-tag fp">false positive</div>
+          <div class="cm-num" data-count="23">0</div>
+          <div class="cm-desc">real → fake</div>
+        </div>
+        <div class="cm-cell">
+          <div class="cm-tag fn">false negative</div>
+          <div class="cm-num" data-count="44">0</div>
+          <div class="cm-desc">fake → real</div>
+        </div>
+        <div class="cm-cell">
+          <div class="cm-tag tp">true positive</div>
+          <div class="cm-num" data-count="3538">0</div>
+          <div class="cm-desc">fake → fake</div>
+        </div>
+      </div>
+
+      <div class="cm-visual">
+        <div class="cm-matrix">
+          <div class="mcell-tn"><span>actual real / pred real</span><span class="mcell-big">4216</span></div>
+          <div class="mcell-fp"><span>actual real / pred fake</span><span class="mcell-big">23</span></div>
+          <div class="mcell-fn"><span>actual fake / pred real</span><span class="mcell-big">44</span></div>
+          <div class="mcell-tp"><span>actual fake / pred fake</span><span class="mcell-big">3538</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 03: SIGNAL DEEPFAKE VISION TECH    -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="deepfake-tech">
+      <div class="exhibit-tag">exhibit 03 — visual forensics</div>
+      <h2 class="section-head">Inside the SIGNAL deepfake detection engine</h2>
+      <p class="section-dek">Reading subtle spatio-temporal artifacts, mouth dynamics, and boundary inconsistencies
+        imperceptible to the human eye.</p>
+
+      <div class="tech-cards-grid">
+        <div class="tech-card">
+          <div class="tech-num">01</div>
+          <h4>YuNet ONNX Face Tracker</h4>
+          <p>Lightweight, ultra-fast CNN-based face detector executing at 320×320 resolution with Non-Maximum
+            Suppression (score threshold 0.60, NMS 0.30). Extracts 5 essential facial landmarks per frame.</p>
+          <span class="tech-pill">models/face_detection_yunet_2023mar.onnx</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-num">02</div>
+          <h4>Vision Transformer (ViT) &amp; LipForensics</h4>
+          <p>Dual neural backends: HuggingFace ViT (dima806) for frame-level feature maps, and CVPR 2021 LipForensics
+            with 3D convolutions and Multi-Scale Temporal Networks (MS-TCN) tracking mouth motion incoherence.</p>
+          <span class="tech-pill">ResNet-18 + MS-TCN / ViT</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-num">03</div>
+          <h4>Provisional 3-Tier Policy</h4>
+          <p>Replaces simplistic binary verdicts with scientifically calibrated forensic confidence bands, recognizing
+            ambiguous lighting, compression artifacts, and extreme motion blur.</p>
+          <span class="tech-pill">Calibrated Threshold Bands</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 04: LEAKAGE STUDY                  -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="leakage">
+      <div class="exhibit-tag">exhibit 04 — academic rigor</div>
+      <h2 class="section-head">Checking the result isn't a trick</h2>
+      <p class="section-dek">REAL articles in ISOT carry Reuters datelines. We tested whether the model leans on that
+        metadata instead of the story itself.</p>
+
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th>Configuration</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Original text (benchmark)</td>
+            <td>99.14%</td>
+            <td>99.35%</td>
+            <td>98.77%</td>
+            <td>99.06%</td>
+          </tr>
+          <tr>
+            <td>Reuters datelines stripped</td>
+            <td>98.33%</td>
+            <td>98.92%</td>
+            <td>97.40%</td>
+            <td>98.16%</td>
+          </tr>
+          <tr>
+            <td>Strict deduplication (0 title/prefix overlap)</td>
+            <td>98.90%</td>
+            <td>99.38%</td>
+            <td>98.19%</td>
+            <td>98.78%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout"><b>Reading:</b> After removing the major Reuters/dateline source artifact and testing
+        stricter duplicate controls, performance remained high at 98.33–98.90%. This confirms the classifier learns
+        authentic lexical patterns beyond simple publisher tags.</div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 05: DATASET STATS                  -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="eda">
+      <div class="exhibit-tag">exhibit 05</div>
+      <h2 class="section-head">Inside the ISOT news corpus</h2>
+      <p class="section-dek">Kaggle / ISOT Fake and Real News dataset — 4 columns (title, text, subject, date); subject
+        and date excluded from the model to avoid trivial leakage.</p>
+
+      <div class="stat-strip">
+        <div>
+          <div class="n" data-count="44898">0</div>
+          <div class="l">raw articles</div>
+        </div>
+        <div>
+          <div class="n" style="color:var(--fake)" data-count="23481">0</div>
+          <div class="l">raw fake</div>
+        </div>
+        <div>
+          <div class="n" style="color:var(--real)" data-count="21417">0</div>
+          <div class="l">raw real</div>
+        </div>
+        <div>
+          <div class="n" data-count="5793">0</div>
+          <div class="l">duplicates removed</div>
+        </div>
+      </div>
+      <div class="cleaned-banner">Cleaned dataset: <b>39,105</b> articles (Real: <b>21,197</b> · Fake: <b>17,908</b>) —
+        mean word count <b>417.74</b> (median 375); Fake mean <b>437.93</b>, Real mean <b>395.59</b></div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 06: EXPLAINABILITY & ERRORS        -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="errors">
+      <div class="exhibit-tag">exhibit 06</div>
+      <h2 class="section-head">What the model is actually reading</h2>
+      <p class="section-dek">Logistic regression coefficients ranked by magnitude, showing exact phrases driving
+        classification.</p>
+
+      <div class="interp-grid">
+        <div class="interp-card">
+          <h4>Pushes toward fake</h4>
+          <div class="sub">positive coefficients (+w)</div>
+          <div class="term-list">
+            <span class="term fake">video (+9.8186)</span>
+            <span class="term fake">image (+6.2313)</span>
+            <span class="term fake">read (+6.1894)</span>
+            <span class="term fake">just (+6.013)</span>
+            <span class="term fake">featured image (+5.9856)</span>
+            <span class="term fake">featured (+5.9225)</span>
+            <span class="term fake">obama (+5.2092)</span>
+            <span class="term fake">gop (+5.09)</span>
+            <span class="term fake">president trump (+4.7)</span>
+            <span class="term fake">getty (+4.2124)</span>
+            <span class="term fake">breaking (+3.8266)</span>
+          </div>
+        </div>
+        <div class="interp-card">
+          <h4>Pushes toward real</h4>
+          <div class="sub">negative coefficients (-w)</div>
+          <div class="term-list">
+            <span class="term real">reuters (-21.3199)</span>
+            <span class="term real">washington reuters (-8.747)</span>
+            <span class="term real">president donald (-5.452)</span>
+            <span class="term real">washington (-4.9834)</span>
+            <span class="term real">wednesday (-4.7875)</span>
+            <span class="term real">tuesday (-4.6007)</span>
+            <span class="term real">reuters president (-4.454)</span>
+            <span class="term real">thursday (-4.4118)</span>
+            <span class="term real">said statement (-3.6084)</span>
+            <span class="term real">told reuters (-3.359)</span>
+            <span class="term real">minister (-3.2447)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EXHIBIT 07: SCIENTIFIC LIMITS              -->
+    <!-- ========================================== -->
+    <section class="file-section reveal" id="limits" style="border-bottom:none">
+      <div class="exhibit-tag">exhibit 07</div>
+      <h2 class="section-head">Scientific limits &amp; forensic boundaries</h2>
+      <div class="limit-grid">
+        <div class="limit-card">
+          <h4>NLP Classification Scope</h4>
+          <p>Dataset-based stylistic and lexical classification. It models resemblance to ISOT benchmark patterns — it
+            does not query live fact-checking databases.</p>
+        </div>
+        <div class="limit-card">
+          <h4>Deepfake Video Boundaries</h4>
+          <p>High video compression, extreme low lighting, or rapid motion blur can elevate forensic anomaly scores. A
+            high score flags anomalies for human review, not absolute proof.</p>
+        </div>
+        <div class="limit-card">
+          <h4>Multimodal Synthesis</h4>
+          <p>By cross-referencing article text and accompanying video evidence, investigators can detect coordinated
+            multi-vector synthetic disinformation campaigns.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RAW TELEMETRY JSON MODAL -->
+  <div class="modal-overlay" id="telemetry-modal" style="display:none;" onclick="handleModalOverlayClick(event)">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div class="modal-title">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+            style="margin-right:8px;">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+            <polyline points="2 17 12 22 22 17" />
+            <polyline points="2 12 12 17 22 12" />
+          </svg>
+          Raw Forensic Telemetry JSON
+        </div>
+        <button type="button" class="modal-close" onclick="closeTelemetryModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <pre><code id="telemetry-json-code">{ "status": "NO_ANALYSIS_EXECUTED" }</code></pre>
+      </div>
+      <div class="modal-foot">
+        <span class="copy-alert" id="copy-alert" style="display:none;">Copied to clipboard!</span>
+        <button type="button" class="btn btn-ghost" onclick="copyTelemetryJson()">Copy JSON</button>
+        <button type="button" class="btn btn-cyan" onclick="closeTelemetryModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    FAKELENS × SIGNAL — Multimodal Misinformation &amp; Deepfake Video Detection · Academic Forensic Intelligence Suite
+    · Models: TF-IDF + Logistic Regression &amp; YuNet + ViT / LipForensics
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

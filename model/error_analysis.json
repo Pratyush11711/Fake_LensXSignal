@@ -1,0 +1,150 @@
+{
+  "total_misclassified": 67,
+  "error_rate": 0.0086,
+  "false_positive_count": 23,
+  "false_negative_count": 44,
+  "sample_false_positives": [
+    {
+      "title": "U.S. presidential election drives record ratings for cable news",
+      "snippet": "U.S. presidential election drives record ratings for cable news (Reuters) - The 2016 election cycle had been a ratings boon for U.S. cable news networks, and Tuesday\u2019s stunning U.S. presidential election victory by Republican Donald Trump was no diff...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 61.79
+    },
+    {
+      "title": "Transcript of Trump video statement in response to lewd remarks about women",
+      "snippet": "Transcript of Trump video statement in response to lewd remarks about women WASHINGTON (Reuters) - U.S. Republican presidential nominee Donald Trump issued a video statement early on Saturday in response to the disclosure of a 2005 videotape of him m...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 89.9
+    },
+    {
+      "title": "Popular Michelle Obama courts young people for Clinton",
+      "snippet": "Popular Michelle Obama courts young people for Clinton FAIRFAX, Va. (Reuters) - Democratic presidential nominee Hillary Clinton\u2019s campaign deployed a popular surrogate on Friday to gin up enthusiasm amid young voters who could be critical to victory ...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 52.68
+    },
+    {
+      "title": "Paris mayor says Trump climate withdrawal 'a mistake with fatal consequences'",
+      "snippet": "Paris mayor says Trump climate withdrawal 'a mistake with fatal consequences' PARIS (Reuters) - The mayor of Paris, where a landmark global climate agreement was agreed in December 2015, said the decision by U.S. President Donald Trump to withdraw fr...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 54.97
+    },
+    {
+      "title": "Russia's response to Trump leak reports: don't read U.S. newspapers",
+      "snippet": "Russia's response to Trump leak reports: don't read U.S. newspapers (Reuters) - A Russian Foreign Ministry spokeswoman on Tuesday advised that people don\u2019t read American newspapers, in response to U.S. media reports that President Donald Trump had di...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 64.48
+    },
+    {
+      "title": "Hackers play 30 minutes of Islamic State propaganda on Swedish radio",
+      "snippet": "Hackers play 30 minutes of Islamic State propaganda on Swedish radio STOCKHOLM (Reuters) - Some listeners to commercial radio station Mix Megapol in Sweden heard 30 minutes of an Islamic State propaganda song on Friday after hackers took over the sta...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 65.36
+    },
+    {
+      "title": "Obama says more must be done to address U.S. police shootings",
+      "snippet": "Obama says more must be done to address U.S. police shootings WARSAW, Poland (Reuters) - President Barack Obama on Friday made an impassioned plea for the nation to do more to address the combative relationship between local police forces and the bla...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 71.22
+    },
+    {
+      "title": "Trump gives Boy Scouts at jamboree a taste of Washington politics",
+      "snippet": "Trump gives Boy Scouts at jamboree a taste of Washington politics GLEN JEAN, West Virginia (Reuters) - After another challenging day in Washington, President Donald Trump flew to West Virginia to a field full of 40,000 chanting and cheering Boy Scout...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 58.4
+    },
+    {
+      "title": "Trump draws full house at own event as he snubs Fox News debate",
+      "snippet": "Trump draws full house at own event as he snubs Fox News debate DES MOINES, Iowa (Reuters) - Donald Trump shunned Thursday night\u2019s debate of the Republican presidential candidates hosted by Fox News and instead filled an auditorium a few miles down t...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 60.09
+    },
+    {
+      "title": "Graphic account of Hulk Hogan sex tape read in Florida court",
+      "snippet": "Graphic account of Hulk Hogan sex tape read in Florida court ST. PETERSBURG, Fla. (Reuters) - Gawker founder Nick Denton read out a graphic account of the acts shown in a sex tape featuring wrestling celebrity Hulk Hogan in a Florida courtroom on Tue...",
+      "actual": "REAL",
+      "predicted": "FAKE",
+      "confidence": 73.35
+    }
+  ],
+  "sample_false_negatives": [
+    {
+      "title": "CONTROVERSY OVER CHRISTIAN FLAG ENGULFS SMALL TOWN",
+      "snippet": "CONTROVERSY OVER CHRISTIAN FLAG ENGULFS SMALL TOWN Local residents supported the flag but national groups said they had received complaints about the flag. So this one is a good case of separation of church and state debate away!A month after a North...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 57.71
+    },
+    {
+      "title": "CONSERVATIVES FIGHT BACK Against Proposed \u201cObamacare Lite\u201d\u2026DEMAND Full Repeal Of Obamacare",
+      "snippet": "CONSERVATIVES FIGHT BACK Against Proposed \u201cObamacare Lite\u201d\u2026DEMAND Full Repeal Of Obamacare House Republicans leaders on Monday embraced a legislative plan to replace the Affordable Care Act for the first time in the nearly seven years since Democrats...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 75.05
+    },
+    {
+      "title": "THE LIST OF WHO\u2019S WHO TAKING ADVANTAGE OF FAILED EU AUSTERITY EXPERIMENT IN GREECE",
+      "snippet": "THE LIST OF WHO\u2019S WHO TAKING ADVANTAGE OF FAILED EU AUSTERITY EXPERIMENT IN GREECE Like a spoiled child on a spending spree with no parental guidance, Greece is forced to sell some of the most beautiful real estate in the world on the cheap Wealthy f...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 61.89
+    },
+    {
+      "title": "THE U.S. IMPORTS MORE AFRICAN REFUGEES AS PLAGUE SPREADS THERE: Caused By Tradition Of Dancing With Corpses [Video]",
+      "snippet": "THE U.S. IMPORTS MORE AFRICAN REFUGEES AS PLAGUE SPREADS THERE: Caused By Tradition Of Dancing With Corpses [Video] One of the fastest growing groups of refugees coming to the U.S. are coming from Africa According to the Center for immigration studie...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 74.24
+    },
+    {
+      "title": "BREAKING: Activist Appeals Court Rules Against Trump\u2026Trump Comes Out Swinging\u2026Tweets Awesome Reply",
+      "snippet": "BREAKING: Activist Appeals Court Rules Against Trump\u2026Trump Comes Out Swinging\u2026Tweets Awesome Reply A federal appeals court ruled that the U.S. will remain open to refugees and visa holders from seven Muslim-majority countries, rejecting a bid by the ...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 81.81
+    },
+    {
+      "title": "PRESIDENT TRUMP\u2019S Illegal Immigrant Crackdown Begins\u2026Feds Conduct Raids In At Least 6 States With Focus On Finding And Deporting Criminals [VIDEO]",
+      "snippet": "PRESIDENT TRUMP\u2019S Illegal Immigrant Crackdown Begins\u2026Feds Conduct Raids In At Least 6 States With Focus On Finding And Deporting Criminals [VIDEO] U.S. immigration authorities arrested hundreds of undocumented immigrants in at least a half-dozen stat...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 55.03
+    },
+    {
+      "title": "WHOA! FRANCE\u2019S CONSERVATIVE PRESIDENTIAL CANDIDATE Refuses To Cover Her Head With Muslim Veil\u2026Walks Out Of Meeting! [Video]",
+      "snippet": "WHOA! FRANCE\u2019S CONSERVATIVE PRESIDENTIAL CANDIDATE Refuses To Cover Her Head With Muslim Veil\u2026Walks Out Of Meeting! [Video] YES!  This is how you deal w/ radicalism. Marine Le Pen REFUSES to cover her head and WALKS OUT instead! #VivaLePenpic.twitter...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 55.06
+    },
+    {
+      "title": "TRUMP POISED TO REVERSE OBAMA\u2019S Politicized \u201cGlobal Warming\u201d Policies\u2026Plans To Bring Energy Jobs Back To Americans",
+      "snippet": "TRUMP POISED TO REVERSE OBAMA\u2019S Politicized \u201cGlobal Warming\u201d Policies\u2026Plans To Bring Energy Jobs Back To Americans The President who shoved his radical agenda down the throats of Americans is about to watch his legacy unwind in favor of jobs and a st...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 54.62
+    },
+    {
+      "title": "ALL HELL BREAKS LOOSE IN FRANCE\u2026",
+      "snippet": "ALL HELL BREAKS LOOSE IN FRANCE\u2026 How socialism and political correctness are destroying a nation We reported about the crime and chaos taking place in France, as Muslim migrants who have no intention of assimilating, have flooded their country. The b...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 51.47
+    },
+    {
+      "title": "PROVOCATION? Republican Senators Introduce New Bill to Move US Embassy in Israel to Jerusalem",
+      "snippet": "PROVOCATION? Republican Senators Introduce New Bill to Move US Embassy in Israel to Jerusalem 21st Century Wire says Donald Trump s campaign  promise  to move the US Embassy in Tel Aviv to Jerusalem could trigger a series of events pushing the region...",
+      "actual": "FAKE",
+      "predicted": "REAL",
+      "confidence": 50.08
+    }
+  ]
+}

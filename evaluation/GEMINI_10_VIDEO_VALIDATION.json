@@ -1,0 +1,322 @@
+{
+  "experiment": "GEMINI_10_VIDEO_VALIDATION_FINAL_DECISION",
+  "timestamp": "2026-09-08T12:54:49Z",
+  "gemini_model": "gemini-3.6-flash",
+  "total_videos": 11,
+  "primary_video_highlight": {
+    "id": "primary_user_verified",
+    "filename": "videoplayback.mp4",
+    "path": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+    "ground_truth": "REAL",
+    "is_primary": true,
+    "description": "User-verified real in-the-wild video",
+    "lipforensics": {
+      "score": 0.9913,
+      "verdict": "FAKE",
+      "runtime_sec": 47.83,
+      "correct": false
+    },
+    "gemini": {
+      "model": "gemini-3.6-flash",
+      "verdict": "REAL",
+      "confidence": 0.75,
+      "evidence": "Consistent facial motion, natural lip-syncing, uniform lighting, and seamless physical integration with the guitar throughout the clip.",
+      "timestamps": "NONE",
+      "runtime_sec": 39.25,
+      "correct": true
+    }
+  },
+  "aggregate_metrics": {
+    "lipforensics": {
+      "total_videos": 11,
+      "real_count": 6,
+      "fake_count": 5,
+      "true_positives_tp": 3,
+      "true_negatives_tn": 3,
+      "false_positives_fp": 3,
+      "false_negatives_fn": 2,
+      "inconclusive_count": 0,
+      "real_false_positive_rate": "3/6 (50.0%)",
+      "real_correct_negative_rate": "3/6 (50.0%)",
+      "fake_true_positive_rate": "3/5 (60.0%)",
+      "fake_false_negative_rate": "2/5 (40.0%)",
+      "accuracy": 0.5455,
+      "precision": 0.5,
+      "recall_sensitivity": 0.6,
+      "specificity": 0.5
+    },
+    "gemini": {
+      "total_videos": 11,
+      "real_count": 6,
+      "fake_count": 5,
+      "true_positives_tp": 0,
+      "true_negatives_tn": 6,
+      "false_positives_fp": 0,
+      "false_negatives_fn": 5,
+      "inconclusive_count": 0,
+      "real_false_positive_rate": "0/6 (0.0%)",
+      "real_correct_negative_rate": "6/6 (100.0%)",
+      "fake_true_positive_rate": "0/5 (0.0%)",
+      "fake_false_negative_rate": "5/5 (100.0%)",
+      "accuracy": 0.5455,
+      "precision": 0.0,
+      "recall_sensitivity": 0.0,
+      "specificity": 1.0
+    }
+  },
+  "video_evaluations": [
+    {
+      "id": "primary_user_verified",
+      "filename": "videoplayback.mp4",
+      "path": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+      "ground_truth": "REAL",
+      "is_primary": true,
+      "description": "User-verified real in-the-wild video",
+      "lipforensics": {
+        "score": 0.9913,
+        "verdict": "FAKE",
+        "runtime_sec": 47.83,
+        "correct": false
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.75,
+        "evidence": "Consistent facial motion, natural lip-syncing, uniform lighting, and seamless physical integration with the guitar throughout the clip.",
+        "timestamps": "NONE",
+        "runtime_sec": 39.25,
+        "correct": true
+      }
+    },
+    {
+      "id": "benchmark_real_01",
+      "filename": "01__exit_phone_room.mp4",
+      "path": "D:\\benchmark_dataset\\real\\01__exit_phone_room.mp4",
+      "ground_truth": "REAL",
+      "is_primary": false,
+      "description": "Benchmark Authentic (01__exit_phone_room.mp4)",
+      "lipforensics": {
+        "score": 0.9857,
+        "verdict": "FAKE",
+        "runtime_sec": 55.2,
+        "correct": false
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.68,
+        "evidence": "The subject moves naturally through the hallway with consistent facial lighting, natural motion blur, and stable features. No temporal warping, edge artifacts, or blending inconsistencies around the face or background are observed.",
+        "timestamps": "NONE",
+        "runtime_sec": 36.53,
+        "correct": true
+      }
+    },
+    {
+      "id": "benchmark_real_02",
+      "filename": "01__kitchen_still.mp4",
+      "path": "D:\\benchmark_dataset\\real\\01__kitchen_still.mp4",
+      "ground_truth": "REAL",
+      "is_primary": false,
+      "description": "Benchmark Authentic (01__kitchen_still.mp4)",
+      "lipforensics": {
+        "score": 0.0001,
+        "verdict": "REAL",
+        "runtime_sec": 57.24,
+        "correct": true
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.7,
+        "evidence": "Facial structure, skin textures, and lip movements remain naturally consistent across frames. Lighting aligns with the environment, and no temporal jitter or boundary warping artifacts are present.",
+        "timestamps": "NONE",
+        "runtime_sec": 128.61,
+        "correct": true
+      }
+    },
+    {
+      "id": "benchmark_real_03",
+      "filename": "01__meeting_serious.mp4",
+      "path": "D:\\benchmark_dataset\\real\\01__meeting_serious.mp4",
+      "ground_truth": "REAL",
+      "is_primary": false,
+      "description": "Benchmark Authentic (01__meeting_serious.mp4)",
+      "lipforensics": {
+        "score": 0.3848,
+        "verdict": "REAL",
+        "runtime_sec": 54.73,
+        "correct": true
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.65,
+        "evidence": "The video demonstrates consistent facial structure, natural lip movements, and uniform lighting across all participants throughout the interaction. No boundary warping, facial tearing, or temporal jitter was detected.",
+        "timestamps": "NONE",
+        "runtime_sec": 46.8,
+        "correct": true
+      }
+    },
+    {
+      "id": "benchmark_real_04",
+      "filename": "01__hugging_happy.mp4",
+      "path": "D:\\benchmark_dataset\\real\\01__hugging_happy.mp4",
+      "ground_truth": "REAL",
+      "is_primary": false,
+      "description": "Benchmark Authentic (01__hugging_happy.mp4)",
+      "lipforensics": {
+        "score": 0.8548,
+        "verdict": "FAKE",
+        "runtime_sec": 55.93,
+        "correct": false
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.72,
+        "evidence": "Facial features, lighting, and physical interactions remain natural and consistent throughout the scene with no visible synthetic blending, edge distortion, or temporal artifacts.",
+        "timestamps": "NONE",
+        "runtime_sec": 33.92,
+        "correct": true
+      }
+    },
+    {
+      "id": "benchmark_real_05",
+      "filename": "01__kitchen_pan.mp4",
+      "path": "D:\\benchmark_dataset\\real\\01__kitchen_pan.mp4",
+      "ground_truth": "REAL",
+      "is_primary": false,
+      "description": "Benchmark Authentic (01__kitchen_pan.mp4)",
+      "lipforensics": {
+        "score": 0.0058,
+        "verdict": "REAL",
+        "runtime_sec": 58.12,
+        "correct": true
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.65,
+        "evidence": "The video exhibits consistent facial features, natural lighting reflections, smooth expressions, and sharp face boundaries without visual flickering, warping, or blending artifacts.",
+        "timestamps": "NONE",
+        "runtime_sec": 40.71,
+        "correct": true
+      }
+    },
+    {
+      "id": "benchmark_fake_01",
+      "filename": "01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "path": "D:\\benchmark_dataset\\fake\\01_02__outside_talking_still_laughing__YVGY8LOK.mp4",
+      "ground_truth": "FAKE",
+      "is_primary": false,
+      "description": "Benchmark Manipulated Deepfakes (01_02__outside_talking)",
+      "lipforensics": {
+        "score": 0.4363,
+        "verdict": "REAL",
+        "runtime_sec": 44.28,
+        "correct": false
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.78,
+        "evidence": "Consistent facial features, natural lip movements, and smooth temporal transitions throughout the clip. Lighting, skin textures, and body movements show no signs of digital warping or deepfake manipulation.",
+        "timestamps": "NONE",
+        "runtime_sec": 47.25,
+        "correct": false
+      }
+    },
+    {
+      "id": "benchmark_fake_02",
+      "filename": "01_02__walk_down_hall_angry__YVGY8LOK.mp4",
+      "path": "D:\\benchmark_dataset\\fake\\01_02__walk_down_hall_angry__YVGY8LOK.mp4",
+      "ground_truth": "FAKE",
+      "is_primary": false,
+      "description": "Benchmark Manipulated Deepfakes (01_02__walk_down_hall)",
+      "lipforensics": {
+        "score": 0.9031,
+        "verdict": "FAKE",
+        "runtime_sec": 43.76,
+        "correct": true
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.73,
+        "evidence": "Facial features, lighting, and skin textures remain consistent throughout the sequence. Boundary lines around the face and hair show no blurring, warping, or swapping artifacts.",
+        "timestamps": "NONE",
+        "runtime_sec": 35.49,
+        "correct": false
+      }
+    },
+    {
+      "id": "benchmark_fake_03",
+      "filename": "01_03__podium_speech_happy__480LQD1C.mp4",
+      "path": "D:\\benchmark_dataset\\fake\\01_03__podium_speech_happy__480LQD1C.mp4",
+      "ground_truth": "FAKE",
+      "is_primary": false,
+      "description": "Benchmark Manipulated FaceSwap (01_03__podium_speech)",
+      "lipforensics": {
+        "score": 0.9994,
+        "verdict": "FAKE",
+        "runtime_sec": 44.64,
+        "correct": true
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.75,
+        "evidence": "Facial features, lighting, and expressions remain temporally consistent throughout the sequence without visual warping, edge artifacts, or unnatural lip-sync behavior.",
+        "timestamps": "NONE",
+        "runtime_sec": 46.26,
+        "correct": false
+      }
+    },
+    {
+      "id": "benchmark_fake_04",
+      "filename": "01_03__talking_against_wall__JZUXXFRB.mp4",
+      "path": "D:\\benchmark_dataset\\fake\\01_03__talking_against_wall__JZUXXFRB.mp4",
+      "ground_truth": "FAKE",
+      "is_primary": false,
+      "description": "Benchmark Manipulated FaceSwap (01_03__talking_against_wall)",
+      "lipforensics": {
+        "score": 0.2237,
+        "verdict": "REAL",
+        "runtime_sec": 82.4,
+        "correct": false
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.68,
+        "evidence": "Facial movements, lip sync, and lighting are natural and consistent throughout. No boundary warping, distortion, or temporal artifacts are observed.",
+        "timestamps": "NONE",
+        "runtime_sec": 32.15,
+        "correct": false
+      }
+    },
+    {
+      "id": "benchmark_fake_05",
+      "filename": "01_03__hugging_happy__ISF9SP4G.mp4",
+      "path": "D:\\benchmark_dataset\\fake\\01_03__hugging_happy__ISF9SP4G.mp4",
+      "ground_truth": "FAKE",
+      "is_primary": false,
+      "description": "Benchmark Manipulated FaceSwap (01_03__hugging_happy)",
+      "lipforensics": {
+        "score": 0.9724,
+        "verdict": "FAKE",
+        "runtime_sec": 45.66,
+        "correct": true
+      },
+      "gemini": {
+        "model": "gemini-3.6-flash",
+        "verdict": "REAL",
+        "confidence": 0.72,
+        "evidence": "Facial features, lighting, and physical interactions remain temporally consistent throughout the sequence. Expression transitions, hand contact, and edge boundaries show natural motion with no signs of deepfake synthesis or manipulation.",
+        "timestamps": "NONE",
+        "runtime_sec": 51.09,
+        "correct": false
+      }
+    }
+  ]
+}

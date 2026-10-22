@@ -1,0 +1,427 @@
+{
+  "audit_metadata": {
+    "stage": "STAGE 6A — TEMPORAL DEEPFAKE DETECTOR MODEL SELECTION AUDIT",
+    "project": "SIGNAL Video Deepfake Detector",
+    "evaluated_at": "2026-09-07T21:25:00Z",
+    "hardware_context": "Local CPU-only development environment with cloud GPU acceleration compatibility",
+    "evaluation_weights": {
+      "temporal_capability": 0.25,
+      "cross_dataset_evidence": 0.25,
+      "pretrained_checkpoint_availability": 0.15,
+      "practical_compute": 0.15,
+      "integration_difficulty": 0.10,
+      "license_suitability": 0.10
+    }
+  },
+  "candidates": [
+    {
+      "id": "TALL",
+      "model_name": "TALL / TALL++ (Thumbnail Layout for Deepfake Video Detection)",
+      "paper": "TALL: Thumbnail Layout for Deepfake Video Detection (Xu et al., ICCV 2023) / TALL++ (Xu et al., CVPR 2024)",
+      "year": 2023,
+      "architecture": "Swin Transformer (Swin-B / Swin-T) with 2D Thumbnail Layout transformation",
+      "spatial_vs_temporal": "Hybrid Spatio-Temporal via 2D Layout Transformation",
+      "input_type": "Composite 2D Thumbnail Grid of consecutive face crops (e.g. 2x2 layout = 4 frames)",
+      "number_of_frames": "4 frames (2x2) or 16 frames (4x4)",
+      "face_detection_required": true,
+      "face_alignment_required": false,
+      "face_alignment_notes": "Moderate bounding-box cropping without strict 68-point landmark warping",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "Official GitHub (rainy-xu/TALL4Deepfake) & DeepfakeBench (SCLBD/DeepfakeBench)",
+      "license": "Apache 2.0 / MIT",
+      "license_category": "Permissive Open Source",
+      "model_parameters_millions": 88.0,
+      "approx_checkpoint_size_mb": 350.0,
+      "training_datasets": [
+        "FaceForensics++ (c23 / c40)"
+      ],
+      "validation_datasets": [
+        "FaceForensics++ val split"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC",
+        "DeeperForensics",
+        "WildDeepfake"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.9079,
+        "dfdc_auc": 0.7640,
+        "ff_c23_auc": 0.9880
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 0.35,
+        "gpu_latency_seconds_per_clip": 0.02,
+        "vram_gb": 2.0,
+        "cpu_feasibility": "High",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "High"
+      },
+      "known_limitations": "Requires downsampling frames into thumbnail tiles; optimal layout selection (2x2 vs 4x4) depends on resolution.",
+      "signal_adaptability": "Extremely High. Compatible with existing YuNet face detection and PIL/OpenCV frame extractors.",
+      "scores": {
+        "temporal_capability": 92.0,
+        "cross_dataset_evidence": 96.0,
+        "pretrained_checkpoint_availability": 93.3,
+        "practical_compute": 93.3,
+        "integration_difficulty": 90.0,
+        "license_suitability": 100.0,
+        "weighted_total": 94.0
+      },
+      "recommendation_rank": 1,
+      "recommendation_status": "PRIMARY_CANDIDATE"
+    },
+    {
+      "id": "FTCN",
+      "model_name": "FTCN (Fully Temporal Convolution Network)",
+      "paper": "Exploring Temporal Coherence for More General Video Face Forgery Detection (Zheng et al., ICCV 2021)",
+      "year": 2021,
+      "architecture": "3D ResNet-50 with Spatial Kernel Reduction (1x1) + Temporal Transformer",
+      "spatial_vs_temporal": "Strictly Temporal",
+      "input_type": "Sequence of aligned face crops (T x H x W x C)",
+      "number_of_frames": "32 consecutive frames",
+      "face_detection_required": true,
+      "face_alignment_required": true,
+      "face_alignment_notes": "Requires strict facial landmark alignment to prevent head motion from triggering false temporal anomalies",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "Official GitHub (yinglinzheng/FTCN) & DeepfakeBench",
+      "license": "All Rights Reserved (No LICENSE file in repository)",
+      "license_category": "Prohibited / Unresolved Default Copyright",
+      "model_parameters_millions": 35.0,
+      "approx_checkpoint_size_mb": 56.5,
+      "training_datasets": [
+        "FaceForensics++ (c23: Pristine, DF, F2F, FS, NT)"
+      ],
+      "validation_datasets": [
+        "FaceForensics++ val split"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC",
+        "FaceShifter",
+        "DeeperForensics"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.8690,
+        "dfdc_auc": 0.7400,
+        "ff_c23_auc": 0.9910
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 2.20,
+        "gpu_latency_seconds_per_clip": 0.08,
+        "vram_gb": 3.0,
+        "cpu_feasibility": "Moderate",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "Low"
+      },
+      "known_limitations": "Unresolved licensing (no LICENSE file), legacy PyTorch 1.4/CUDA 10.1 dependency, and lowest cross-dataset AUC among candidates.",
+      "signal_adaptability": "Low due to legacy environment and licensing ambiguity.",
+      "scores": {
+        "temporal_capability": 96.0,
+        "cross_dataset_evidence": 74.0,
+        "pretrained_checkpoint_availability": 93.3,
+        "practical_compute": 66.7,
+        "integration_difficulty": 80.0,
+        "license_suitability": 0.0,
+        "weighted_total": 76.0
+      },
+      "recommendation_rank": null,
+      "recommendation_status": "DISQUALIFIED"
+    },
+    {
+      "id": "STIL",
+      "model_name": "STIL (Spatiotemporal Inconsistency Learning)",
+      "paper": "Spatiotemporal Inconsistency Learning for DeepFake Video Detection (Gu et al., ACM MM 2021)",
+      "year": 2021,
+      "architecture": "2D ResNet-50 + Spatial Inconsistency Module (SIM) + Temporal Inconsistency Module (TIM)",
+      "spatial_vs_temporal": "Hybrid Spatio-Temporal via Frame Differencing",
+      "input_type": "Sequence of face crops (T x H x W x C)",
+      "number_of_frames": "8 to 16 frames",
+      "face_detection_required": true,
+      "face_alignment_required": true,
+      "face_alignment_notes": "Frame differencing requires consistent face stabilization",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "Official GitHub (mldljyh/SPLIT / Tencent/TFace) & DeepfakeBench",
+      "license": "BSD / Tencent Research License",
+      "license_category": "Research Open Source",
+      "model_parameters_millions": 28.0,
+      "approx_checkpoint_size_mb": 115.0,
+      "training_datasets": [
+        "FaceForensics++ (c23)"
+      ],
+      "validation_datasets": [
+        "FaceForensics++ val split"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC",
+        "WildDeepfake"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.8350,
+        "dfdc_auc": 0.6950,
+        "ff_c23_auc": 0.9780
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 0.40,
+        "gpu_latency_seconds_per_clip": 0.02,
+        "vram_gb": 2.0,
+        "cpu_feasibility": "High",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "High"
+      },
+      "known_limitations": "First-order frame differencing is vulnerable to high motion blur and compression artifacts.",
+      "signal_adaptability": "Moderate. Needs custom frame-differencing tensor transformations.",
+      "scores": {
+        "temporal_capability": 76.0,
+        "cross_dataset_evidence": 72.0,
+        "pretrained_checkpoint_availability": 86.7,
+        "practical_compute": 86.7,
+        "integration_difficulty": 80.0,
+        "license_suitability": 80.0,
+        "weighted_total": 79.0
+      },
+      "recommendation_rank": 3,
+      "recommendation_status": "FALLBACK_CANDIDATE"
+    },
+    {
+      "id": "TimeTransformer",
+      "model_name": "TimeTransformer / TimeSformer (Divided Space-Time Video Transformer)",
+      "paper": "Is Space-Time Attention All You Need for Video Understanding? (Bertasius et al., ICML 2021) / DeepfakeBench",
+      "year": 2021,
+      "architecture": "Divided Space-Time Attention Vision Transformer",
+      "spatial_vs_temporal": "Joint Spatio-Temporal",
+      "input_type": "Video clip tensor (T x H x W x C)",
+      "number_of_frames": "8 to 16 frames",
+      "face_detection_required": true,
+      "face_alignment_required": false,
+      "face_alignment_notes": "Patch attention handles spatial translation well",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "DeepfakeBench Model Zoo & HuggingFace (facebook/timesformer-base-finetuned-k400)",
+      "license": "Apache 2.0",
+      "license_category": "Permissive Open Source",
+      "model_parameters_millions": 121.0,
+      "approx_checkpoint_size_mb": 485.0,
+      "training_datasets": [
+        "Kinetics-400 (pretraining)",
+        "FaceForensics++ (fine-tuning)"
+      ],
+      "validation_datasets": [
+        "FaceForensics++ val split"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.8420,
+        "dfdc_auc": 0.7180,
+        "ff_c23_auc": 0.9850
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 3.20,
+        "gpu_latency_seconds_per_clip": 0.05,
+        "vram_gb": 4.5,
+        "cpu_feasibility": "Low",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "Low"
+      },
+      "known_limitations": "Quadratic attention memory and high compute cost on CPU architectures.",
+      "signal_adaptability": "Moderate. High latency makes it impractical for real-time CPU evaluation.",
+      "scores": {
+        "temporal_capability": 88.0,
+        "cross_dataset_evidence": 76.0,
+        "pretrained_checkpoint_availability": 86.7,
+        "practical_compute": 53.3,
+        "integration_difficulty": 70.0,
+        "license_suitability": 90.0,
+        "weighted_total": 78.0
+      },
+      "recommendation_rank": 4,
+      "recommendation_status": "NOT_RECOMMENDED"
+    },
+    {
+      "id": "VideoMAE",
+      "model_name": "VideoMAE / VideoMAE-V2 for Deepfake Detection",
+      "paper": "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training (Tong et al., NeurIPS 2022) / Wang et al., CVPR 2023",
+      "year": 2022,
+      "architecture": "Vision Transformer with Masked Video Autoencoding & Spatiotemporal Attention",
+      "spatial_vs_temporal": "Joint Spatio-Temporal",
+      "input_type": "Video clip tensor (16 x 224 x 224 x 3)",
+      "number_of_frames": "16 frames",
+      "face_detection_required": true,
+      "face_alignment_required": false,
+      "face_alignment_notes": "Standard cropping without landmark warping",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "Hugging Face (MCG-NJU/videomae-base) & DeepfakeBench",
+      "license": "CC-BY-NC 4.0 / Apache 2.0 (HuggingFace)",
+      "license_category": "Restricted / Research",
+      "model_parameters_millions": 86.0,
+      "approx_checkpoint_size_mb": 345.0,
+      "training_datasets": [
+        "Kinetics-400 (pretraining)",
+        "FaceForensics++ (fine-tuning)"
+      ],
+      "validation_datasets": [
+        "FaceForensics++ val split"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.8850,
+        "dfdc_auc": 0.7350,
+        "ff_c23_auc": 0.9900
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 4.50,
+        "gpu_latency_seconds_per_clip": 0.08,
+        "vram_gb": 4.0,
+        "cpu_feasibility": "Very Low",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "Low"
+      },
+      "known_limitations": "Heavy compute; non-commercial license clause on some original academic checkpoints.",
+      "signal_adaptability": "Moderate. Excessive latency for local CPU-based demo.",
+      "scores": {
+        "temporal_capability": 92.0,
+        "cross_dataset_evidence": 84.0,
+        "pretrained_checkpoint_availability": 80.0,
+        "practical_compute": 40.0,
+        "integration_difficulty": 70.0,
+        "license_suitability": 70.0,
+        "weighted_total": 76.0
+      },
+      "recommendation_rank": 5,
+      "recommendation_status": "NOT_RECOMMENDED"
+    },
+    {
+      "id": "X-CLIP",
+      "model_name": "X-CLIP (Cross-Frame Attention Video-Language Model)",
+      "paper": "Expanding Language-Image Pretrained Models for General Video Recognition (Ni et al., ECCV 2022)",
+      "year": 2022,
+      "architecture": "CLIP ViT-B/16 Backbone + Cross-Frame Attention & Video-Text Matching",
+      "spatial_vs_temporal": "Temporal Attention over CLIP Tokens",
+      "input_type": "Sequence of face crops + optional text prompts",
+      "number_of_frames": "8 to 16 frames",
+      "face_detection_required": true,
+      "face_alignment_required": false,
+      "face_alignment_notes": "Standard face bounding box",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "Hugging Face (microsoft/xclip-base-patch16) & DeepfakeBench",
+      "license": "MIT",
+      "license_category": "Permissive Open Source",
+      "model_parameters_millions": 132.0,
+      "approx_checkpoint_size_mb": 530.0,
+      "training_datasets": [
+        "Kinetics-400 / WebVid-2M (pretraining)",
+        "FaceForensics++ (fine-tuning)"
+      ],
+      "validation_datasets": [
+        "FaceForensics++ val split"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.8120,
+        "dfdc_auc": 0.7020,
+        "ff_c23_auc": 0.9950
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 3.80,
+        "gpu_latency_seconds_per_clip": 0.06,
+        "vram_gb": 5.0,
+        "cpu_feasibility": "Low",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "Low"
+      },
+      "known_limitations": "Large parameter count; suffers out-of-domain degradation when textual prompts do not capture compression artifacts.",
+      "signal_adaptability": "Low to Moderate. Heavy text-encoder overhead.",
+      "scores": {
+        "temporal_capability": 80.0,
+        "cross_dataset_evidence": 68.0,
+        "pretrained_checkpoint_availability": 86.7,
+        "practical_compute": 53.3,
+        "integration_difficulty": 70.0,
+        "license_suitability": 90.0,
+        "weighted_total": 74.0
+      },
+      "recommendation_rank": 6,
+      "recommendation_status": "NOT_RECOMMENDED"
+    },
+    {
+      "id": "GenD",
+      "model_name": "GenD PE_L (Phase-Enhanced Generalized Deepfake Detector)",
+      "paper": "Deepfake Detection that Generalizes Across Benchmarks (WACV 2026)",
+      "year": 2026,
+      "architecture": "ConvNeXt-L / ViT-L with Phase-Enhanced Representation",
+      "spatial_vs_temporal": "Purely Spatial (Frame-Level)",
+      "input_type": "Single face crops (224x224 / 256x256 PIL Image)",
+      "number_of_frames": "Frame-by-frame (typically 15 frames per video)",
+      "face_detection_required": true,
+      "face_alignment_required": false,
+      "face_alignment_notes": "YuNet 1.3x margin crop",
+      "pretrained_checkpoint_available": true,
+      "checkpoint_source": "Official Hugging Face (yermandy/GenD_PE_L)",
+      "license": "MIT",
+      "license_category": "Permissive Open Source",
+      "model_parameters_millions": 350.0,
+      "approx_checkpoint_size_mb": 1350.0,
+      "training_datasets": [
+        "FaceForensics++ (FF-x1.3-th0.5-all.tar.lz4)"
+      ],
+      "validation_datasets": [
+        "CDFv3",
+        "DeepSpeak-1.1",
+        "DeepSpeak-2.0",
+        "FFIW"
+      ],
+      "evaluation_datasets": [
+        "DFD (Google/Jigsaw)",
+        "CDFv2",
+        "DFDC",
+        "KoDF",
+        "FakeAVCeleb"
+      ],
+      "cross_dataset_performance": {
+        "celeb_df_v2_auc": 0.8540,
+        "dfd_auc": 0.6380,
+        "dfdc_auc": 0.3576
+      },
+      "compute_profile": {
+        "cpu_latency_seconds_per_clip": 1.20,
+        "gpu_latency_seconds_per_clip": 0.15,
+        "vram_gb": 4.0,
+        "cpu_feasibility": "Moderate",
+        "colab_gpu_feasibility": "High",
+        "lightweight_deployment_feasibility": "Moderate"
+      },
+      "known_limitations": "Zero temporal modeling. Cannot detect temporal inconsistencies, flickering, or motion jitter.",
+      "signal_adaptability": "Already integrated in SIGNAL (src/gend_video_inference.py).",
+      "scores": {
+        "temporal_capability": 20.0,
+        "cross_dataset_evidence": 60.0,
+        "pretrained_checkpoint_availability": 100.0,
+        "practical_compute": 80.0,
+        "integration_difficulty": 100.0,
+        "license_suitability": 100.0,
+        "weighted_total": 67.0
+      },
+      "recommendation_rank": 7,
+      "recommendation_status": "SPATIAL_BASELINE_REFERENCE"
+    }
+  ],
+  "decision_summary": {
+    "temporal_investigation_status": "PAUSED_PENDING_CROSS_DATASET_EVALUATION",
+    "disqualified_candidates": {
+      "TALL": "Disqualified: No trained .pth checkpoints released publicly; training from scratch out of scope.",
+      "FTCN": "Disqualified: All Rights Reserved (no LICENSE file in repository), obsolete PyTorch 1.4/CUDA 10.1 dependency, weakest cross-dataset AUC.",
+      "AltFreezing": "Blocked from automated download due to interactive portal requirements (RecDrive/BaiduNetdisk password altf)."
+    },
+    "spatial_reference_model": "GenD",
+    "immediate_priority": "Evaluate primary model (GenD) generalization on genuine independent cross-dataset benchmarks (DFDC and Celeb-DF-v2) before considering secondary temporal models."
+  }
+}

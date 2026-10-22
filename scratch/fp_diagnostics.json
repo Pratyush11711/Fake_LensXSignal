@@ -1,0 +1,344 @@
+[
+  {
+    "label": "videoplayback (2).mp4 (Uploaded user web video / Duplicate of primary real case)",
+    "filename": "videoplayback (2).mp4",
+    "filepath": "C:\\Users\\hp\\Downloads\\videoplayback (2).mp4",
+    "provenance": "User-verified authentic web video (in-the-wild high anomaly)",
+    "file_size_bytes": 8018477,
+    "file_size_mb": 7.647,
+    "duration_sec": 167.3,
+    "fps": 30.0,
+    "resolution": "640x352",
+    "width": 640,
+    "height": 352,
+    "total_frames": 5019,
+    "valid_face_frames": 5019,
+    "valid_mouth_crops": 5019,
+    "clip_count": 4,
+    "per_clip_raw_logits": [
+      2.4776,
+      -0.1747,
+      5.6947,
+      10.9624
+    ],
+    "per_clip_fake_probabilities": [
+      0.9226,
+      0.4564,
+      0.9966,
+      1.0
+    ],
+    "clip_details": [
+      {
+        "clip_index": 1,
+        "raw_logit": 2.4776,
+        "fake_probability": 0.9226
+      },
+      {
+        "clip_index": 2,
+        "raw_logit": -0.1747,
+        "fake_probability": 0.4564
+      },
+      {
+        "clip_index": 3,
+        "raw_logit": 5.6947,
+        "fake_probability": 0.9966
+      },
+      {
+        "clip_index": 4,
+        "raw_logit": 10.9624,
+        "fake_probability": 1.0
+      }
+    ],
+    "mean_logit": 4.74,
+    "final_fake_probability": 0.9913,
+    "production_verdict_legacy": "FAKE",
+    "production_tier": "SIGNS OF POSSIBLE MANIPULATION",
+    "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+    "inference_time_sec": 46.75
+  },
+  {
+    "label": "download (6).mp4 (Direct web download / In-the-wild real)",
+    "filename": "download (6).mp4",
+    "filepath": "C:\\Users\\hp\\Downloads\\download (6).mp4",
+    "provenance": "Direct web download (132x168 mobile-compressed authentic web footage)",
+    "file_size_bytes": 57358,
+    "file_size_mb": 0.055,
+    "duration_sec": 10.0,
+    "fps": 30.0,
+    "resolution": "132x168",
+    "width": 132,
+    "height": 168,
+    "total_frames": 300,
+    "valid_face_frames": 300,
+    "valid_mouth_crops": 300,
+    "clip_count": 4,
+    "per_clip_raw_logits": [
+      3.6731,
+      3.1611,
+      1.1328,
+      7.1125
+    ],
+    "per_clip_fake_probabilities": [
+      0.9752,
+      0.9593,
+      0.7564,
+      0.9992
+    ],
+    "clip_details": [
+      {
+        "clip_index": 1,
+        "raw_logit": 3.6731,
+        "fake_probability": 0.9752
+      },
+      {
+        "clip_index": 2,
+        "raw_logit": 3.1611,
+        "fake_probability": 0.9593
+      },
+      {
+        "clip_index": 3,
+        "raw_logit": 1.1328,
+        "fake_probability": 0.7564
+      },
+      {
+        "clip_index": 4,
+        "raw_logit": 7.1125,
+        "fake_probability": 0.9992
+      }
+    ],
+    "mean_logit": 3.7699,
+    "final_fake_probability": 0.9775,
+    "production_verdict_legacy": "FAKE",
+    "production_tier": "SIGNS OF POSSIBLE MANIPULATION",
+    "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+    "inference_time_sec": 1.24
+  },
+  {
+    "label": "download (5).mp4 (Direct web download / In-the-wild real)",
+    "filename": "download (5).mp4",
+    "filepath": "C:\\Users\\hp\\Downloads\\download (5).mp4",
+    "provenance": "Direct web download (136x184 mobile-compressed authentic web footage)",
+    "file_size_bytes": 62672,
+    "file_size_mb": 0.06,
+    "duration_sec": 10.0,
+    "fps": 30.0,
+    "resolution": "136x184",
+    "width": 136,
+    "height": 184,
+    "total_frames": 300,
+    "valid_face_frames": 300,
+    "valid_mouth_crops": 300,
+    "clip_count": 4,
+    "per_clip_raw_logits": [
+      12.94,
+      13.3625,
+      12.8309,
+      8.775
+    ],
+    "per_clip_fake_probabilities": [
+      1.0,
+      1.0,
+      1.0,
+      0.9998
+    ],
+    "clip_details": [
+      {
+        "clip_index": 1,
+        "raw_logit": 12.94,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 2,
+        "raw_logit": 13.3625,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 3,
+        "raw_logit": 12.8309,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 4,
+        "raw_logit": 8.775,
+        "fake_probability": 0.9998
+      }
+    ],
+    "mean_logit": 11.9771,
+    "final_fake_probability": 1.0,
+    "production_verdict_legacy": "FAKE",
+    "production_tier": "SIGNS OF POSSIBLE MANIPULATION",
+    "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+    "inference_time_sec": 1.16
+  },
+  {
+    "label": "Snapchat-550444171.mp4 (OnePlus smartphone recording / In-the-wild real)",
+    "filename": "Snapchat-550444171.mp4",
+    "filepath": "D:\\One Plus\\Snapchat-550444171.mp4",
+    "provenance": "OnePlus smartphone front camera recording via Snapchat",
+    "file_size_bytes": 9027336,
+    "file_size_mb": 8.609,
+    "duration_sec": 28.0,
+    "fps": 25.18,
+    "resolution": "528x864",
+    "width": 528,
+    "height": 864,
+    "total_frames": 705,
+    "valid_face_frames": 705,
+    "valid_mouth_crops": 705,
+    "clip_count": 4,
+    "per_clip_raw_logits": [
+      0.4061,
+      29.417,
+      11.685,
+      9.7021
+    ],
+    "per_clip_fake_probabilities": [
+      0.6002,
+      1.0,
+      1.0,
+      0.9999
+    ],
+    "clip_details": [
+      {
+        "clip_index": 1,
+        "raw_logit": 0.4061,
+        "fake_probability": 0.6002
+      },
+      {
+        "clip_index": 2,
+        "raw_logit": 29.417,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 3,
+        "raw_logit": 11.685,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 4,
+        "raw_logit": 9.7021,
+        "fake_probability": 0.9999
+      }
+    ],
+    "mean_logit": 12.8026,
+    "final_fake_probability": 1.0,
+    "production_verdict_legacy": "FAKE",
+    "production_tier": "SIGNS OF POSSIBLE MANIPULATION",
+    "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+    "inference_time_sec": 20.06
+  },
+  {
+    "label": "download (2).mp4 (Direct web download / In-the-wild real)",
+    "filename": "download (2).mp4",
+    "filepath": "C:\\Users\\hp\\Downloads\\download (2).mp4",
+    "provenance": "Direct web download (124x152 compressed authentic web footage)",
+    "file_size_bytes": 134947,
+    "file_size_mb": 0.129,
+    "duration_sec": 9.9,
+    "fps": 30.0,
+    "resolution": "124x152",
+    "width": 124,
+    "height": 152,
+    "total_frames": 297,
+    "valid_face_frames": 297,
+    "valid_mouth_crops": 297,
+    "clip_count": 4,
+    "per_clip_raw_logits": [
+      -7.0384,
+      3.5583,
+      17.4698,
+      11.9498
+    ],
+    "per_clip_fake_probabilities": [
+      0.0009,
+      0.9723,
+      1.0,
+      1.0
+    ],
+    "clip_details": [
+      {
+        "clip_index": 1,
+        "raw_logit": -7.0384,
+        "fake_probability": 0.0009
+      },
+      {
+        "clip_index": 2,
+        "raw_logit": 3.5583,
+        "fake_probability": 0.9723
+      },
+      {
+        "clip_index": 3,
+        "raw_logit": 17.4698,
+        "fake_probability": 1.0
+      },
+      {
+        "clip_index": 4,
+        "raw_logit": 11.9498,
+        "fake_probability": 1.0
+      }
+    ],
+    "mean_logit": 6.4849,
+    "final_fake_probability": 0.9985,
+    "production_verdict_legacy": "FAKE",
+    "production_tier": "SIGNS OF POSSIBLE MANIPULATION",
+    "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+    "inference_time_sec": 1.05
+  },
+  {
+    "label": "videoplayback.mp4 (Primary known real case)",
+    "filename": "videoplayback.mp4",
+    "filepath": "C:\\Users\\hp\\Downloads\\videoplayback.mp4",
+    "provenance": "User-verified authentic web video (YouTube / Web stream)",
+    "file_size_bytes": 8018477,
+    "file_size_mb": 7.647,
+    "duration_sec": 167.3,
+    "fps": 30.0,
+    "resolution": "640x352",
+    "width": 640,
+    "height": 352,
+    "total_frames": 5019,
+    "valid_face_frames": 5019,
+    "valid_mouth_crops": 5019,
+    "clip_count": 4,
+    "per_clip_raw_logits": [
+      2.4776,
+      -0.1747,
+      5.6947,
+      10.9624
+    ],
+    "per_clip_fake_probabilities": [
+      0.9226,
+      0.4564,
+      0.9966,
+      1.0
+    ],
+    "clip_details": [
+      {
+        "clip_index": 1,
+        "raw_logit": 2.4776,
+        "fake_probability": 0.9226
+      },
+      {
+        "clip_index": 2,
+        "raw_logit": -0.1747,
+        "fake_probability": 0.4564
+      },
+      {
+        "clip_index": 3,
+        "raw_logit": 5.6947,
+        "fake_probability": 0.9966
+      },
+      {
+        "clip_index": 4,
+        "raw_logit": 10.9624,
+        "fake_probability": 1.0
+      }
+    ],
+    "mean_logit": 4.74,
+    "final_fake_probability": 0.9913,
+    "production_verdict_legacy": "FAKE",
+    "production_tier": "SIGNS OF POSSIBLE MANIPULATION",
+    "advisory_message": "High forensic anomaly signal detected. This does not by itself establish manipulation. Compression, motion, lighting, and camera conditions can elevate the score. Independent verification is recommended.",
+    "inference_time_sec": 45.61
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "status": "ANALYSIS_COMPLETE",
+  "model_backend": "lipforensics",
+  "result": "REAL",
+  "detection_score": 0.0017,
+  "fake_probability": 0.0017,
+  "forensic_score": 0.0017,
+  "assessment_tier": "LIKELY AUTHENTIC",
+  "assessment_message": "Low forensic anomaly signal detected. This does not guarantee authenticity.",
+  "confidence": "99.83%",
+  "decision_threshold": 0.5,
+  "provisional_thresholds": {
+    "likely_authentic_max": 0.4,
+    "inconclusive_max": 0.9,
+    "possible_manipulation_min": 0.9
+  },
+  "frames_analyzed": 800,
+  "frame_scores": [
+    0.0,
+    0.016,
+    0.0002,
+    0.7137
+  ],
+  "face_coverage": 1.0,
+  "execution_time": 89.546,
+  "face_scan": {
+    "box": {
+      "x": 0.6535,
+      "y": 0.1128,
+      "w": 0.1166,
+      "h": 0.2902
+    }
+  }
+}

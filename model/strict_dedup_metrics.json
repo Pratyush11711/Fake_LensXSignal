@@ -1,0 +1,53 @@
+{
+  "experiment_name": "Strict Deduplication & Near-Duplicate Controlled Experiment",
+  "deduplication_summary": {
+    "raw_total_articles": 44898,
+    "exact_duplicates_removed": 5793,
+    "short_articles_removed": 605,
+    "duplicate_bodies_removed": 271,
+    "duplicate_titles_removed": 123,
+    "prefix_near_duplicates_removed": 262,
+    "total_articles_removed": 7054,
+    "final_clean_articles": 37844,
+    "real_articles_count": 20687,
+    "fake_articles_count": 17157,
+    "train_set_size": 30275,
+    "test_set_size": 7569,
+    "cross_split_title_overlap": 0,
+    "cross_split_prefix_overlap": 0
+  },
+  "metrics": {
+    "accuracy": 0.989,
+    "precision": 0.9938,
+    "recall": 0.9819,
+    "f1_score": 0.9878,
+    "accuracy_pct": "98.90%",
+    "precision_pct": "99.38%",
+    "recall_pct": "98.19%",
+    "f1_pct": "98.78%",
+    "confusion_matrix": {
+      "tn": 4117,
+      "fp": 21,
+      "fn": 62,
+      "tp": 3369,
+      "matrix": [
+        [
+          4117,
+          21
+        ],
+        [
+          62,
+          3369
+        ]
+      ]
+    }
+  },
+  "comparison_with_original_benchmark": {
+    "original_benchmark_accuracy": 0.9914,
+    "original_benchmark_f1": 0.9906,
+    "strict_experiment_accuracy": 0.989,
+    "strict_experiment_f1": 0.9878,
+    "accuracy_difference": -0.0024,
+    "f1_difference": -0.0028
+  }
+}

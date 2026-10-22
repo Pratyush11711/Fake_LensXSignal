@@ -1,0 +1,39 @@
+{
+  "audit_metadata": {
+    "stage": "STAGE 6B — TALL / TALL++ COMPATIBILITY & CHECKPOINT AUDIT (CORRECTED)",
+    "project": "SIGNAL Video Deepfake Detector",
+    "evaluated_at": "2026-09-07T21:32:00Z",
+    "audit_status": "DISQUALIFIED_NO_PUBLIC_TRAINED_CHECKPOINT"
+  },
+  "provenance_resolution": {
+    "tall_swin_checkpoint_status": "NO_CONFIRMED_TRAINED_CHECKPOINT_LOCATED",
+    "official_repo_inspected": "https://github.com/rainy-xu/TALL4Deepfake",
+    "releases_found": 0,
+    "hosted_weights_found": false,
+    "issues_status": "Unresolved author issues requesting pretrained weights",
+    "conclusion": "TALL repository provides training code only; no official downloadable .pth weights exist in the repository or releases."
+  },
+  "candidate_status": {
+    "tall": {
+      "recommendation": "DEPRIORITIZED_DISQUALIFIED",
+      "reason": "Cannot be evaluated or deployed without training from scratch, which is out of scope per free-tier resource constraints."
+    },
+    "altfreezing": {
+      "recommendation": "RECOMMENDED_FOR_INVESTIGATION",
+      "paper": "AltFreezing: Dual-branch Spatiotemporal Feature Learning (AAAI 2023)",
+      "repo": "https://github.com/ZhendongWang6/AltFreezing",
+      "checkpoint_status": "Download links provided in official repository"
+    },
+    "ftcn": {
+      "recommendation": "SECONDARY_INVESTIGATION",
+      "paper": "Exploring Temporal Coherence for More General Video Face Forgery Detection (ICCV 2021)",
+      "repo": "https://github.com/yinglinzheng/FTCN",
+      "checkpoint_status": "Pretrained weights linked in official README (requires legacy isolated environment)"
+    }
+  },
+  "domain_leakage_audit": {
+    "tall_training_set": "FaceForensics++ (FF++)",
+    "dfd_relationship": "DFD was generated in conjunction with the FF++ consortium sharing actor protocols and generation tools.",
+    "leakage_verdict": "Any FF++-trained model evaluated on DFD represents near-domain testing with high risk of distribution leakage. True cross-dataset evaluation must rely on DFDC and Celeb-DF-v2."
+  }
+}

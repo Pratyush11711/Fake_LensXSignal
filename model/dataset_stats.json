@@ -1,0 +1,27 @@
+{
+  "fake_raw_count": 23481,
+  "true_raw_count": 21417,
+  "total_raw_count": 44898,
+  "duplicates_removed": 5793,
+  "total_cleaned_count": 39105,
+  "fake_cleaned_count": 17908,
+  "real_cleaned_count": 21197,
+  "columns": [
+    "title",
+    "text",
+    "subject",
+    "date",
+    "label",
+    "label_name",
+    "raw_content"
+  ],
+  "subjects": {
+    "politicsNews": 11217,
+    "worldnews": 9980,
+    "News": 9050,
+    "politics": 6838,
+    "US_News": 783,
+    "left-news": 705,
+    "Government News": 532
+  }
+}

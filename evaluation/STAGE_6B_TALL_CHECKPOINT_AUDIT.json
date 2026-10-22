@@ -1,0 +1,62 @@
+{
+  "audit_metadata": {
+    "stage": "STAGE 6B — TALL / TALL-SWIN CHECKPOINT PROVENANCE AUDIT",
+    "project": "SIGNAL Video Deepfake Detector",
+    "evaluated_at": "2026-09-07T21:48:00Z",
+    "audit_decision": "OUTCOME_B_NO_CONFIRMED_TRAINED_CHECKPOINT"
+  },
+  "official_sources_inspected": {
+    "repository_url": "https://github.com/rainy-xu/TALL4Deepfake",
+    "readme_file": "https://raw.githubusercontent.com/rainy-xu/TALL4Deepfake/main/README.md",
+    "readme_findings": "Contains training command and test command with local path placeholder '--initial_checkpoint [model_checkpoint]'. Zero download links, URLs, or cloud storage links.",
+    "releases_page": "https://github.com/rainy-xu/TALL4Deepfake/releases",
+    "releases_findings": "EMPTY: 'There aren’t any releases here'.",
+    "tags_page": "https://github.com/rainy-xu/TALL4Deepfake/tags",
+    "tags_findings": "EMPTY: No tagged releases.",
+    "source_code_inspection": {
+      "test_py": "Requires local file path via parser.add_argument('--initial_checkpoint', ...). No remote fetching.",
+      "main_py": "Training script saving output to local directory. No pretrained checkpoint URLs."
+    },
+    "deepfakebench_framework": {
+      "repository": "https://github.com/SCLBD/DeepfakeBench",
+      "findings": "Implements tall_detector.py as architecture code only. Requires local training from ImageNet backbones; does not mirror original authors' ICCV 2023 checkpoint."
+    }
+  },
+  "four_claims_matrix": {
+    "architecture_compatibility": {
+      "status": "VERIFIED",
+      "details": "torchvision.models.swin_b and swin_t instantiate and execute on Python 3.14 / PyTorch 2.11."
+    },
+    "checkpoint_availability": {
+      "status": "FAILED_UNAVAILABLE",
+      "details": "NO CONFIRMED TRAINED TALL-SWIN CHECKPOINT LOCATED."
+    },
+    "checkpoint_loading": {
+      "status": "NOT_POSSIBLE",
+      "details": "Cannot load non-existent checkpoint."
+    },
+    "actual_inference": {
+      "status": "NOT_POSSIBLE",
+      "details": "Cannot run inference without trained weights."
+    }
+  },
+  "licensing_breakdown": {
+    "A_tall_repository": "Unfinished MIT template: 'Copyright (c) [year] [fullname]'",
+    "B_tall_source_code": "Derived from Swin-Transformer (MIT) and FaceForensics",
+    "C_swin_dependencies": "timm (Apache 2.0), torchvision (BSD-3-Clause)",
+    "D_pretrained_backbone": "ImageNet Swin-B weights (Apache 2.0)",
+    "E_trained_checkpoint": "NON_EXISTENT / NOT_RELEASED"
+  },
+  "training_distribution_audit": {
+    "training_dataset": "FaceForensics++ (c23 / c40: Pristine, DF, F2F, FS, NT)",
+    "validation_dataset": "FaceForensics++ val split (140 videos)",
+    "evaluation_datasets_in_paper": ["Celeb-DF-v2", "DFDC", "DeeperForensics", "WildDeepfake"],
+    "dfd_leakage_verdict": "Google/Jigsaw DFD is IN-DOMAIN / NEAR-DOMAIN relative to FF++ training due to shared consortium actors and synthesis methods.",
+    "true_cross_dataset_standards": ["DFDC", "Celeb-DF-v2"]
+  },
+  "final_verdict": {
+    "statement": "NO CONFIRMED TRAINED TALL-SWIN CHECKPOINT LOCATED",
+    "action": "TALL is officially DISQUALIFIED and DEPRIORITIZED. Do not implement tall_detector.py. Do not train from scratch.",
+    "next_steps": "Rely on the verified GenD baseline and evaluate genuine cross-dataset performance on DFDC/Celeb-DF-v2 before considering secondary models."
+  }
+}

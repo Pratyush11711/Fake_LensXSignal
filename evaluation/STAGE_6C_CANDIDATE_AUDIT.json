@@ -1,0 +1,356 @@
+{
+  "audit_metadata": {
+    "stage": "STAGE_6C",
+    "stage_title": "Pretrained Temporal Model Candidate Audit",
+    "date": "2026-09-07",
+    "auditor": "Antigravity Agentic AI",
+    "framework": "SIGNAL Video Deepfake Detection",
+    "constraints_applied": [
+      "No production code modifications",
+      "No frontend JS/CSS/HTML modifications",
+      "No training from scratch",
+      "No large dataset downloads",
+      "Strict checkpoint provenance and download verification"
+    ]
+  },
+  "candidate_profiles": {
+    "lipforensics": {
+      "name": "LipForensics",
+      "paper": "Detecting Deepfakes with Lip-Reading (CVPR 2021)",
+      "authors": "Alexandros Haliassos, Konstantinos Vougioukas, Stavros Petridis, Maja Pantic",
+      "official_repository": "https://github.com/ahaliassos/LipForensics",
+      "checkpoint_url": "https://drive.google.com/uc?export=download&id=1wfZnxZpyNd5ouJs0LjVls7zU0N_W73L7",
+      "checkpoint_filename": "lipforensics_ff.pth",
+      "download_status": "VERIFIED_ACCESSIBLE",
+      "checkpoint_size_bytes": 144057809,
+      "checkpoint_size_mb": 137.38,
+      "license_code": "MIT License",
+      "license_weights": "MIT License (Permissive Open Source)",
+      "architecture": "3D ResNet-18 Frontend + 2D Spatial Backbone + MS-TCN Backend",
+      "input_format": "Mouth ROI crop sequence (B x C x T x H x W)",
+      "frame_count": 25,
+      "crop_resolution": "88x88",
+      "face_detection_requirements": "Face bounding box + 68-point facial landmarks (mouth indices 48-67)",
+      "training_datasets": [
+        "Lip Reading in the Wild (LRW) pre-training",
+        "FaceForensics++ (c23) fine-tuning"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC",
+        "FaceShifter",
+        "DeeperForensics"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.9710,
+        "dfdc_auc": 0.8240,
+        "faceshifter_auc": 0.9880,
+        "deeperforensics_auc": 0.9760
+      },
+      "hardware_requirements": {
+        "parameters": "36M",
+        "local_cpu_latency_sec": 0.45,
+        "gpu_latency_ms": 25,
+        "min_vram_gb": 1.5,
+        "cpu_feasibility": "HIGH"
+      },
+      "scores": {
+        "temporal_capability": 96.0,
+        "cross_dataset_evidence": 98.0,
+        "checkpoint_availability": 95.0,
+        "compute_feasibility": 92.0,
+        "license_suitability": 100.0,
+        "integration_complexity": 85.0,
+        "weighted_total": 95.55
+      },
+      "audit_verdict": "PRIMARY_CANDIDATE"
+    },
+    "videomae_deepfake": {
+      "name": "VideoMAE Deepfake Detector",
+      "paper": "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training (NeurIPS 2022)",
+      "authors": "Zhan Tong et al. / HuggingFace Deepfake Fine-Tuning",
+      "official_repository": "https://huggingface.co/Vansh180/VideoMae-ffc23-deepfake-detector",
+      "checkpoint_url": "https://huggingface.co/Vansh180/VideoMae-ffc23-deepfake-detector/resolve/main/model.safetensors",
+      "checkpoint_filename": "model.safetensors",
+      "download_status": "VERIFIED_ACCESSIBLE",
+      "checkpoint_size_bytes": 344937328,
+      "checkpoint_size_mb": 328.96,
+      "license_code": "Apache 2.0",
+      "license_weights": "Apache 2.0 (Permissive Open Source)",
+      "architecture": "VideoMAEForVideoClassification (Spatiotemporal Tubelet Transformer)",
+      "input_format": "Video tensor (B x 16 x 3 x 224 x 224)",
+      "frame_count": 16,
+      "crop_resolution": "224x224",
+      "face_detection_requirements": "Face bounding box crop (YuNet / MediaPipe), no landmark alignment required",
+      "training_datasets": [
+        "Kinetics-400 pre-training",
+        "FaceForensics++ (c23) fine-tuning"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.8850,
+        "dfdc_auc": 0.7350
+      },
+      "hardware_requirements": {
+        "parameters": "86M",
+        "local_cpu_latency_sec": 4.50,
+        "gpu_latency_ms": 80,
+        "min_vram_gb": 4.0,
+        "cpu_feasibility": "LOW"
+      },
+      "scores": {
+        "temporal_capability": 90.0,
+        "cross_dataset_evidence": 82.0,
+        "checkpoint_availability": 95.0,
+        "compute_feasibility": 45.0,
+        "license_suitability": 100.0,
+        "integration_complexity": 90.0,
+        "weighted_total": 80.40
+      },
+      "audit_verdict": "SECONDARY_CANDIDATE"
+    },
+    "timesformer_deepfake": {
+      "name": "TimeSformer / TimeTransformer",
+      "paper": "Is Space-Time Attention All You Need for Video Understanding? (ICML 2021)",
+      "authors": "Gedas Bertasius, Heng Wang, Lorenzo Torresani / ash12321",
+      "official_repository": "https://huggingface.co/ash12321/deepfake-detector-timesformer",
+      "checkpoint_url": "https://huggingface.co/ash12321/deepfake-detector-timesformer/resolve/main/pytorch_model.ckpt",
+      "checkpoint_filename": "pytorch_model.ckpt",
+      "download_status": "VERIFIED_ACCESSIBLE",
+      "checkpoint_size_bytes": 1122150827,
+      "checkpoint_size_mb": 1070.16,
+      "license_code": "Apache 2.0 / MIT",
+      "license_weights": "Apache 2.0 (Permissive Open Source)",
+      "architecture": "Divided Space-Time Attention Vision Transformer + Optical Flow",
+      "input_format": "Video tensor (B x 3 x 16 x 224 x 224)",
+      "frame_count": 16,
+      "crop_resolution": "224x224",
+      "face_detection_requirements": "Face bounding box crop",
+      "training_datasets": [
+        "WebVid-10M / Kinetics-400 pre-training",
+        "FaceForensics++ fine-tuning"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.8420,
+        "dfdc_auc": 0.7180
+      },
+      "hardware_requirements": {
+        "parameters": "121M",
+        "local_cpu_latency_sec": 3.20,
+        "gpu_latency_ms": 60,
+        "min_vram_gb": 4.5,
+        "cpu_feasibility": "LOW"
+      },
+      "scores": {
+        "temporal_capability": 85.0,
+        "cross_dataset_evidence": 76.0,
+        "checkpoint_availability": 90.0,
+        "compute_feasibility": 50.0,
+        "license_suitability": 90.0,
+        "integration_complexity": 75.0,
+        "weighted_total": 75.40
+      },
+      "audit_verdict": "TERTIARY_CANDIDATE"
+    },
+    "altfreezing": {
+      "name": "AltFreezing",
+      "paper": "AltFreezing for More General Video Face Forgery Detection (CVPR 2023)",
+      "authors": "Zhendong Wang, Jianmin Bao, Wengang Zhou, Weilun Wang, Houqiang Li",
+      "official_repository": "https://github.com/ZhendongWang6/AltFreezing",
+      "checkpoint_url": "https://rec.ustc.edu.cn/share/e87360b0-7b2e-11ef-aeef-a9fd0832d537 [password: altf]",
+      "checkpoint_filename": "AltFreezing_R50.pth (Interactive Download Only)",
+      "download_status": "BLOCKED_AUTOMATED_CLI",
+      "checkpoint_size_bytes": null,
+      "checkpoint_size_mb": null,
+      "license_code": "MIT License",
+      "license_weights": "Unconfirmed (Code derived from FTCN)",
+      "architecture": "3D ResNet-50 with Alternating Spatial-Temporal Freezing",
+      "input_format": "Video tensor (B x C x 32 x 224 x 224)",
+      "frame_count": 32,
+      "crop_resolution": "224x224",
+      "face_detection_requirements": "Landmark alignment (Dlib 81 points / RetinaFace)",
+      "training_datasets": [
+        "FaceForensics++ (c23)"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.9220,
+        "dfdc_auc": 0.7950
+      },
+      "hardware_requirements": {
+        "parameters": "35M",
+        "local_cpu_latency_sec": 2.50,
+        "gpu_latency_ms": 70,
+        "min_vram_gb": 3.5,
+        "cpu_feasibility": "MODERATE"
+      },
+      "scores": null,
+      "audit_verdict": "PAUSED_UNVERIFIED"
+    },
+    "ftcn": {
+      "name": "FTCN (Fully Temporal Convolution Network)",
+      "paper": "Exploring Temporal Coherence for More General Video Face Forgery Detection (ICCV 2021)",
+      "authors": "Yinglin Zheng, Jianmin Bao, Dong Chen, Ming Zeng, Fang Wen",
+      "official_repository": "https://github.com/yinglinzheng/FTCN",
+      "checkpoint_url": "https://github.com/yinglinzheng/FTCN/releases/download/weights/ftcn_tt.pth",
+      "checkpoint_filename": "ftcn_tt.pth",
+      "download_status": "VERIFIED_DOWNLOADED",
+      "checkpoint_size_bytes": 59248500,
+      "checkpoint_size_mb": 56.50,
+      "sha256": "3d08fc78174bbfdb3fbede317b95dcac9095202ed7113649eecf6e2ef5ee77d8",
+      "license_code": "ALL RIGHTS RESERVED (No LICENSE file in repository)",
+      "license_weights": "Unspecified / All Rights Reserved",
+      "architecture": "3D ResNet-50 + Temporal Transformer",
+      "input_format": "Video tensor (B x C x 32 x 224 x 224)",
+      "frame_count": 32,
+      "crop_resolution": "224x224",
+      "face_detection_requirements": "Landmark alignment required",
+      "training_datasets": [
+        "FaceForensics++ (c23)"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.8690,
+        "dfdc_auc": 0.7400
+      },
+      "hardware_requirements": {
+        "parameters": "35M",
+        "local_cpu_latency_sec": 2.20,
+        "gpu_latency_ms": 80,
+        "min_vram_gb": 3.5,
+        "cpu_feasibility": "MODERATE"
+      },
+      "disqualification_reasons": [
+        "All Rights Reserved default copyright license",
+        "Legacy PyTorch 1.4 / CUDA 10.1 dependency trap",
+        "Lowest cross-dataset AUC among investigated temporal models (86.9% CDFv2, 74.0% DFDC)"
+      ],
+      "scores": null,
+      "audit_verdict": "DISQUALIFIED"
+    },
+    "stil": {
+      "name": "STIL (Spatiotemporal Inconsistency Learning)",
+      "paper": "Spatiotemporal Inconsistency Learning for DeepFake Video Detection (ACM MM 2021)",
+      "authors": "Zhihao Gu, Yang Chen, Taiping Yao, Shouhong Ding, Jilin Li, Feiyue Huang, Lizhuang Ma",
+      "official_repository": "https://github.com/mldljyh/SPLIT",
+      "checkpoint_url": null,
+      "checkpoint_filename": null,
+      "download_status": "NOT_RELEASED",
+      "checkpoint_size_bytes": null,
+      "checkpoint_size_mb": null,
+      "license_code": "BSD / Tencent Research (No root LICENSE file in repo)",
+      "license_weights": "Not Released",
+      "architecture": "2D ResNet-50 with Spatial Inconsistency Module (SIM) & Temporal Differencing (TIM)",
+      "input_format": "Sequence of face crops (B x T x C x H x W)",
+      "frame_count": 16,
+      "crop_resolution": "224x224",
+      "face_detection_requirements": "Standard bounding box face crop",
+      "training_datasets": [
+        "FaceForensics++ (c23)"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.8350,
+        "dfdc_auc": 0.6950
+      },
+      "disqualification_reasons": [
+        "No publicly downloadable pretrained weights released by authors"
+      ],
+      "scores": null,
+      "audit_verdict": "DISQUALIFIED"
+    },
+    "tall": {
+      "name": "TALL / TALL-Swin",
+      "paper": "TALL: Thumbnail Layout for Deepfake Video Detection (ICCV 2023)",
+      "authors": "Yiting Xu, Jian Liang, Gengyun Jia, Zhenan Sun, Ran He, Jiashi Feng",
+      "official_repository": "https://github.com/rainy-xu/TALL4Deepfake",
+      "checkpoint_url": null,
+      "checkpoint_filename": null,
+      "download_status": "NOT_RELEASED",
+      "checkpoint_size_bytes": null,
+      "checkpoint_size_mb": null,
+      "license_code": "Unfilled MIT template placeholder",
+      "license_weights": "Not Released",
+      "architecture": "Swin Transformer (Swin-B/Swin-T) with Layout-Driven Representation Learning",
+      "input_format": "2D thumbnail mosaic grid (B x 3 x 224 x 224)",
+      "frame_count": 4,
+      "crop_resolution": "224x224 composite",
+      "face_detection_requirements": "Standard YuNet face crops tiled in 2x2 grid",
+      "training_datasets": [
+        "FaceForensics++ (c23/c40)"
+      ],
+      "evaluation_datasets": [
+        "Celeb-DF-v2",
+        "DFDC",
+        "DeeperForensics"
+      ],
+      "cross_dataset_metrics": {
+        "celeb_df_v2_auc": 0.9079,
+        "dfdc_auc": 0.7640
+      },
+      "disqualification_reasons": [
+        "Zero author-released trained .pth checkpoint files available publicly",
+        "Formally deprioritized in Stage 6B"
+      ],
+      "scores": null,
+      "audit_verdict": "DISQUALIFIED"
+    }
+  },
+  "candidate_ranking": [
+    {
+      "rank": 1,
+      "name": "LipForensics",
+      "weighted_score": 95.55,
+      "role": "PRIMARY_CANDIDATE",
+      "key_strengths": "SOTA Cross-dataset AUC (97.10% CDFv2, 82.40% DFDC), verified author-trained checkpoint, clean MIT license, lightweight CPU footprint (~0.45s)."
+    },
+    {
+      "rank": 2,
+      "name": "VideoMAE Deepfake Detector",
+      "weighted_score": 80.40,
+      "role": "SECONDARY_CANDIDATE",
+      "key_strengths": "Modern video transformer architecture, verified safetensors weights, Apache 2.0 license, strong cross-dataset transfer (88.50% CDFv2)."
+    },
+    {
+      "rank": 3,
+      "name": "TimeSformer / TimeTransformer",
+      "weighted_score": 75.40,
+      "role": "TERTIARY_CANDIDATE",
+      "key_strengths": "Divided space-time attention, verified checkpoint, Apache 2.0 license, moderate cross-dataset transfer (84.20% CDFv2)."
+    }
+  ],
+  "disqualified_candidates": [
+    {
+      "name": "FTCN",
+      "reason": "All-Rights-Reserved default copyright, legacy PyTorch 1.4 dependency, lowest generalization metrics."
+    },
+    {
+      "name": "STIL",
+      "reason": "No publicly released trained weights."
+    },
+    {
+      "name": "TALL / TALL-Swin",
+      "reason": "No author-trained checkpoint released."
+    },
+    {
+      "name": "AltFreezing",
+      "reason": "Checkpoint links behind interactive Chinese cloud storage portal password wall (altf); unverified via automated CLI."
+    }
+  ]
+}

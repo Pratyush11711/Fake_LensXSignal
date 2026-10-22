@@ -1,0 +1,68 @@
+{
+  "model_name": "TF-IDF + Logistic Regression",
+  "model_type": "Linear Classifier",
+  "vectorizer_config": {
+    "ngram_range": [
+      1,
+      2
+    ],
+    "max_features": 5000,
+    "min_df": 5,
+    "max_df": 0.7,
+    "sublinear_tf": true,
+    "stop_words": "english"
+  },
+  "accuracy": 0.9914,
+  "precision": 0.9935,
+  "recall": 0.9877,
+  "f1_score": 0.9906,
+  "accuracy_pct": "99.14%",
+  "precision_pct": "99.35%",
+  "recall_pct": "98.77%",
+  "f1_pct": "99.06%",
+  "confusion_matrix": {
+    "tn": 4216,
+    "fp": 23,
+    "fn": 44,
+    "tp": 3538,
+    "matrix": [
+      [
+        4216,
+        23
+      ],
+      [
+        44,
+        3538
+      ]
+    ]
+  },
+  "classification_report": {
+    "REAL": {
+      "precision": 0.9896713615023475,
+      "recall": 0.9945741920264213,
+      "f1-score": 0.9921167196140722,
+      "support": 4239.0
+    },
+    "FAKE": {
+      "precision": 0.9935411401291772,
+      "recall": 0.9877163595756561,
+      "f1-score": 0.990620187596248,
+      "support": 3582.0
+    },
+    "accuracy": 0.9914333205472446,
+    "macro avg": {
+      "precision": 0.9916062508157624,
+      "recall": 0.9911452758010386,
+      "f1-score": 0.9913684536051601,
+      "support": 7821.0
+    },
+    "weighted avg": {
+      "precision": 0.9914437112071556,
+      "recall": 0.9914333205472446,
+      "f1-score": 0.9914313113941712,
+      "support": 7821.0
+    }
+  },
+  "test_set_size": 7821,
+  "train_set_size": 31284
+}
